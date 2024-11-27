@@ -33,6 +33,7 @@ declare interface TagAttributes {
     like_count: number;
     like_state: number;
     theme_id: number;
+    category: string
   }
   declare interface UserAttributes {
     id: number;

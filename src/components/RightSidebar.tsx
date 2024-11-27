@@ -9,7 +9,7 @@ import { FriendshipLink } from "./FriendshipLink";
 const RightSidebar = () => {
 
   return (
-    <section className={cn("right_sidebar max-h-[calc(100vh-5px)]")}>
+    <section className={cn("right_sidebar flex-none max-h-[calc(100vh-5px)]")}>
       <PopularCard />
       <PopularTags className="mt-4" />
       <FriendshipLink className="mt-4" />

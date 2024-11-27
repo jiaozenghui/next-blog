@@ -1,9 +1,7 @@
 
-import {Get} from "@axios";
-import useFetch from "@/common/hooks/useFetch";
-import useUserWriteArticle from "@/store/user/article-create";
+import { redirect } from 'next/navigation'
+import { getAuthSession } from "@/utils/auth";
 import ArticleEditor from "@/components/ArticleEditor";
-import { Skeleton } from "@/components/ui/skeleton";
 
 type UploadStatus = "ready" | "loading" | "success" | "error";
 export interface UploadFile {
@@ -23,14 +21,16 @@ export interface UploadFile {
 
 
 const EditArticle = async({ params }: { params: Promise<{ id: string }> }) => {
-
   const articleId=  (await params).id
-
-
+  
+  const session = await getAuthSession()
+  if(!session?.accessToken) {
+    redirect('/')
+  }
 
   return (
     <ArticleEditor
-        articleId ={articleId}
+        articleId={articleId}
     />
     )
 };

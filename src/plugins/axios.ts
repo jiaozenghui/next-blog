@@ -10,7 +10,7 @@ interface IAnyObj {
   [index: string]: unknown;
 }
 
-interface FcResponse<T> {
+export interface FcResponse<T> {
   errno: number;
   message: string;
   data: T;

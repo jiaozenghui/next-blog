@@ -16,6 +16,7 @@ type articleListItemType = Pick<
   | "create_time"
   | "comment_count"
   | "like_count"
+  | "content"
   | "state"
 > & {
   tag: Pick<TagAttributes, "name">[];

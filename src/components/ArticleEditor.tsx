@@ -26,11 +26,10 @@ import { useToast } from "@/components/ui/use-toast";
 // import { useMutation } from "convex/react"
 import { useRouter  } from "next/navigation";
 import LoaderSpinner from "@/components/LoaderSpinner";
-import axios from "axios";
+import axios, {Post, Patch, FcResponse} from "@axios";
 
-import useUserWriteArticle from "@/store/user/article-create";
 import useFetch from "@/common/hooks/useFetch";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeletons } from "@/components/Skeletons";
 import { articleListItemType } from "@/types/article";
 
 type UploadStatus = "ready" | "loading" | "success" | "error";
@@ -85,9 +84,7 @@ export type modalPropsType = Pick<propsType, "submit">;
 const ArticleEditor = (props:propsType) => {
   const { data:session } = useSession();
   const router = useRouter();
-  const updateData = useUserWriteArticle((s) => s.updateData);
-  const articleData = useUserWriteArticle((s) => s.data);
-  const resetArticleData = useUserWriteArticle((s) => s.resetData);
+
 
   const [imagePrompt, setImagePrompt] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -99,7 +96,14 @@ const ArticleEditor = (props:propsType) => {
   const { toast } = useToast();
 
 
-
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: '',
+      desc: '',
+    },
+  });
 
 
   const { data, isLoading, refetch } = useFetch<articleListItemType, any>(() =>
@@ -111,38 +115,24 @@ const ArticleEditor = (props:propsType) => {
   //为状态设置值
   useEffect(() => {
     if (data) {
-      const { title, content, reprint, desc, cover_url, theme_id } = data;
-      updateData({
-        title,
-        content,
-        reprint,
-        desc,
-        cover_url,
-        theme_id,
-      });
+      form.setValue('desc', data.desc)
+      form.setValue('title', data.title)
+      setImageUrl(data.coverImg)
+      setContent(data.content)
     }
-  }, [updateData, data]);
+  }, [data, form]);
 
-  
-debugger
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: data? data.title: '',
-      desc: data? data.desc: '',
-    },
-  });
-
-  if (!isLoading) {
-    form.setValue('desc', data?.desc)
-    form.setValue('title', data?.title)
+  const handleBack= (r: FcResponse<articleListItemType> | undefined, e:any)=>{
+    if (r && r.errno===0) {
+        toast({ title: props.articleId? 'Update successed': 'Podcast created' });
+        setIsSubmitting(false);
+        router.push("/");
+    } else {
+        throw new Error("opt failed")
+    }
   }
 
-
-
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    debugger;
     try {
       setIsSubmitting(true);
       if (!imageUrl) {
@@ -152,28 +142,28 @@ debugger
         setIsSubmitting(false);
         throw new Error("Please generate image");
       }
-
-      const results = await axios.post(
-        "/api/articles/create",
-        {
-          title: data.title,
-          desc: data.desc,
-          coverImg: imageUrl,
-          content: content,
+     
+      const postBody = {
+        title: data.title,
+        desc: data.desc,
+        coverImg: imageUrl,
+        content: content,
+      }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${session?.accessToken}`,
-          },
-        }
-      );
-      if (results && results.data) {
-        toast({ title: "Podcast created" });
-        setIsSubmitting(false);
-        router.push("/");
+      }
+    
+debugger
+      if (props.articleId) {
+        const [e, r] = await Patch<articleListItemType>(`/api/articles/update/${props.articleId}`, postBody, config)
+        handleBack(r,e)
+      } else {
+        const [e, r] = await Post<articleListItemType>("/api/articles/create", postBody, config)
+        handleBack(r,e)
       }
     } catch (error) {
-      console.log(error);
       toast({
         title: "Error",
         variant: "destructive",
@@ -266,7 +256,11 @@ debugger
       </Form>
     </section>
   ) : (
-    <Skeleton />
+    <div className="space-y-2 mt-20">
+    <Skeletons rows={6} className="h-4 w-full" />
+
+  </div>
+    
   );
 };
 export default ArticleEditor;

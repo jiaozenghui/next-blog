@@ -15,11 +15,6 @@ export interface UploadFile {
   url?: string;
 }
 
-
-
-
-
-
 const EditArticle = async({ params }: { params: Promise<{ id: string }> }) => {
   const articleId=  (await params).id
   

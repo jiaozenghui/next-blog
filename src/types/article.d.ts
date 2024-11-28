@@ -4,17 +4,17 @@ type articleListItemType = Pick<
   | "id"
   | "title"
   | "desc"
-  | "view_count"
+  | "viewCount"
   | "coverImg"
   | "update_time"
-  | "create_time"
+  | "createdAt"
   | "comment_count"
-  | "like_count"
+  | "likeCount"
   | "content"
   | "state"
   | 'category'
+  | 'tags'
 > & {
-  tag: Pick<TagAttributes, "name">[];
   author_data: Pick<UserAttributes, "name">;
 };
 export type { articleListItemType };

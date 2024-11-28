@@ -17,6 +17,48 @@ export const sidebarLinks = [
 ];
 
 
+export const tagList = [
+  {
+    id: "js",
+    label: "JS",
+  },
+  {
+    id: "nodejs",
+    label: "Nodejs",
+  },
+  {
+    id: "angular",
+    label: "Agular",
+  },
+  {
+    id: "vue",
+    label: "Vue",
+  }
+] 
+
+export const categoryList = [
+  {
+    id: "js",
+    label: "JS",
+  },
+  {
+    id: "nodejs",
+    label: "Nodejs",
+  },
+  {
+    id: "angular",
+    label: "Agular",
+  },
+  {
+    id: "vue",
+    label: "Vue",
+  },
+  {
+    id: "react",
+    label: "React",
+  }
+] 
+
 
 export const voiceDetails = [
   {

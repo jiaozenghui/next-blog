@@ -1,8 +1,6 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
-import { PopularCard } from "./PopularCard";
+import PopularCard from "./PopularCard";
 import { PopularTags } from "./PopularTags";
 import { FriendshipLink } from "./FriendshipLink";
 

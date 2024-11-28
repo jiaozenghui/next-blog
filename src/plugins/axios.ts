@@ -36,7 +36,8 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => {
     if (response.status !== 200) return Promise.reject(response.data);
-
+    handleAuthError(response.data.errno)
+    handleGeneralError(response.data.errno, response.data.message)
     return response;
   },
   (error) => {

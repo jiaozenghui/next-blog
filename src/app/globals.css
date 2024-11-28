@@ -114,7 +114,9 @@
 }
 
 @layer utilities {
-
+  .artcle_list {
+    min-height: calc(100vh - 100px);
+  }
   .right_sidebar {
     @apply sticky right-0 top-0 flex w-[310px] flex-col overflow-y-auto border-none pl-[20px] pt-4 max-xl:hidden;
     -ms-overflow-style: none;

@@ -15,7 +15,7 @@ export default function RootLayout({
         <main className="relative flex overflow-hidden">
           <section className="flex min-h-screen flex-1 flex-col overflow-hidden">
             <div className="mx-auto flex w-full flex-col ">
-              <div className="flex flex-col md:pb-14">
+              <div className="flex flex-col ">
                 <Toaster />
 
                 {children}

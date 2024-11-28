@@ -14,9 +14,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useSession } from "next-auth/react";
 
-type CardProps = React.ComponentProps<typeof Card>;
+interface CardProps extends React.ComponentProps<typeof Card> {
+  articleId: number
+};
 
-export function HeaderActions({ className, ...props }: CardProps) {
+export function HeaderActions({ articleId}: CardProps) {
 
   const { status } = useSession();
   const Delete = async () => {
@@ -41,9 +43,10 @@ export function HeaderActions({ className, ...props }: CardProps) {
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/articles/editor/3" >
-                    Write
-                  </Link></DropdownMenuItem>
+                  <Link href={`/articles/editor/${articleId}`} >
+                    Edit
+                  </Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

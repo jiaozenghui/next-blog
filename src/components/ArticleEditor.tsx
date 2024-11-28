@@ -15,8 +15,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 // import GeneratePodcast from "@/components/GeneratePodcast"
@@ -24,13 +32,15 @@ import GenerateThumbnail from "@/components/GenerateThumbnail";
 import { Loader } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 // import { useMutation } from "convex/react"
-import { useRouter  } from "next/navigation";
+import { useRouter } from "next/navigation";
 import LoaderSpinner from "@/components/LoaderSpinner";
-import axios, {Post, Patch, FcResponse} from "@axios";
+import axios, { Post, Patch, FcResponse } from "@axios";
 
 import useFetch from "@/common/hooks/useFetch";
 import { Skeletons } from "@/components/Skeletons";
 import { articleListItemType } from "@/types/article";
+import { categoryList } from "@/constants";
+import { tagList } from "@/constants";
 
 type UploadStatus = "ready" | "loading" | "success" | "error";
 export interface UploadFile {
@@ -43,10 +53,14 @@ export interface UploadFile {
   // 上传为图书时候的预览地址
   url?: string;
 }
-
+debugger
 const formSchema = z.object({
   title: z.string().min(2),
   desc: z.string().min(2),
+  category: z.string().min(2),
+  tags: z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one item.",
+  }),
 });
 
 const AIEditor = dynamic(() => import("@/components/AIEditor"), {
@@ -72,7 +86,7 @@ type articleParamsType = articleDataType & {
   cover_file_name: articleContextType["cover_file_name"];
 };
 interface propsType {
-  data?: articleListItemType
+  data?: articleListItemType;
   articleId?: string;
   /** 提交事件*/
   submit?: (values: articleParamsType) => void;
@@ -81,10 +95,9 @@ interface propsType {
 }
 export type modalPropsType = Pick<propsType, "submit">;
 
-const ArticleEditor = (props:propsType) => {
-  const { data:session } = useSession();
+const ArticleEditor = (props: propsType) => {
+  const { data: session } = useSession();
   const router = useRouter();
-
 
   const [imagePrompt, setImagePrompt] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -95,42 +108,53 @@ const ArticleEditor = (props:propsType) => {
 
   const { toast } = useToast();
 
-
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: '',
-      desc: '',
+      title: "",
+      desc: "",
+      category: "",
+      tags: [],
     },
   });
 
-
-  const { data, isLoading, refetch } = useFetch<articleListItemType, any>(() =>
-    axios.get(`/api/articles/${props.articleId}`).then((res) => {
+  const { data, isLoading, refetch } = useFetch<articleListItemType, any>(
+    () =>
+      axios.get(`/api/articles/${props.articleId}`).then((res) => {
         return res.data.data;
-      })
-    );
+      }),
+    { isUnSend: props.articleId ? false : true }
+  );
 
   //为状态设置值
   useEffect(() => {
     if (data) {
-      form.setValue('desc', data.desc)
-      form.setValue('title', data.title)
-      setImageUrl(data.coverImg)
-      setContent(data.content)
+      form.setValue("desc", data.desc);
+      form.setValue("title", data.title);
+      form.setValue("category", data.category);
+      form.setValue("tags", data.tags? data.tags.split('|'): []);
+      if (data.coverImg) {
+        setImageUrl(data.coverImg);
+      }
+      setContent(data.content);
     }
   }, [data, form]);
 
-  const handleBack= (r: FcResponse<articleListItemType> | undefined, e:any)=>{
-    if (r && r.errno===0) {
-        toast({ title: props.articleId? 'Update successed': 'Podcast created' });
-        setIsSubmitting(false);
-        router.push("/");
+  const handleBack = (
+    r: FcResponse<articleListItemType> | undefined,
+    e: any
+  ) => {
+    if (r && r.errno === 0) {
+      toast({
+        title: props.articleId ? "Update successed" : "Podcast created",
+      });
+      setIsSubmitting(false);
+      router.push("/");
     } else {
-        throw new Error("opt failed")
+      throw new Error("opt failed");
     }
-  }
+  };
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
@@ -140,28 +164,37 @@ const ArticleEditor = (props:propsType) => {
           title: "Please generate image",
         });
         setIsSubmitting(false);
-        throw new Error("Please generate image");
+        //throw new Error("Please generate image");
       }
-     
+
       const postBody = {
         title: data.title,
         desc: data.desc,
         coverImg: imageUrl,
         content: content,
-      }
+        category: data.category,
+        tags: data.tags.join('|')
+      };
       const config = {
         headers: {
           Authorization: `Bearer ${session?.accessToken}`,
         },
-      }
-    
-debugger
+      };
+
       if (props.articleId) {
-        const [e, r] = await Patch<articleListItemType>(`/api/articles/update/${props.articleId}`, postBody, config)
-        handleBack(r,e)
+        const [e, r] = await Patch<articleListItemType>(
+          `/api/articles/update/${props.articleId}`,
+          postBody,
+          config
+        );
+        handleBack(r, e);
       } else {
-        const [e, r] = await Post<articleListItemType>("/api/articles/create", postBody, config)
-        handleBack(r,e)
+        const [e, r] = await Post<articleListItemType>(
+          "/api/articles/create",
+          postBody,
+          config
+        );
+        handleBack(r, e);
       }
     } catch (error) {
       toast({
@@ -172,14 +205,14 @@ debugger
     }
   }
 
-  return data ? (
-    <section className="mt-10 flex flex-col">
+  return !isLoading ? (
+    <section className="mt-6 flex flex-col">
       <h1 className="text-20 font-bold  ">Create Podcast</h1>
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="mt-12 flex w-full flex-col"
+          className="mt-6 flex w-full flex-col"
         >
           <div className="flex flex-col gap-[30px] border-b border-black-5 pb-10">
             <FormField
@@ -196,6 +229,80 @@ debugger
                     />
                   </FormControl>
                   <FormMessage className=" " />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-2.5">
+                  <FormLabel className="text-16 font-bold  ">
+                    Category
+                  </FormLabel>
+                  <FormControl>
+                    <Select
+                    {...field}
+                    onValueChange={field.onChange} defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {categoryList.map((item) => (
+                          <SelectItem key={item.id} value={item.id}>
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage className=" " />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="tags"
+              render={() => (
+                <FormItem>
+                  <FormLabel className="text-16 font-bold  ">Tags</FormLabel>
+                  {tagList.map((item) => (
+                    <FormField
+                      key={item.id}
+                      control={form.control}
+                      name="tags"
+                      render={({ field }) => {
+                        return (
+                          <FormItem
+                            key={item.id}
+                            className="flex flex-row items-start space-x-3 space-y-0"
+                          >
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value?.includes(item.id)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([...field.value, item.id])
+                                    : field.onChange(
+                                        field.value?.filter(
+                                          (value) => value !== item.id
+                                        )
+                                      );
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              {item.label}
+                            </FormLabel>
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  ))}
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -239,7 +346,7 @@ debugger
               onChange={(val) => setContent(val)}
             />
 
-            <div className="mt-10 w-full">
+            <div className="my-10 w-full">
               <Button type="submit">
                 {isSubmitting ? (
                   <>
@@ -257,10 +364,8 @@ debugger
     </section>
   ) : (
     <div className="space-y-2 mt-20">
-    <Skeletons rows={6} className="h-4 w-full" />
-
-  </div>
-    
+      <Skeletons rows={6} className="h-4 w-full" />
+    </div>
   );
 };
 export default ArticleEditor;

@@ -4,7 +4,7 @@ declare interface TagAttributes {
     belong: number;
     icon_file_name?: string;
     icon_url?: string;
-    create_time: Date;
+    createdAt: Date;
     indexes: number;
   }
   
@@ -12,7 +12,6 @@ declare interface TagAttributes {
     id: number;
     title: string;
     desc: string;
-    tag: TagAttributes[];
     author: number;
     author_data: UserAttributes;
     content: string;
@@ -21,19 +20,20 @@ declare interface TagAttributes {
     reprint?: string;
     state: number;
     language: string[] | null;
-    view_count?: number;
+    viewCount: number;
     update_time?: string;
-    create_time: string;
+    createdAt: string;
     comment_count: number;
     /** 是否展示目录*/
     display_directory: boolean;
     collection_count: number;
     /** 是收藏（收藏夹ID）*/
     collection_state: number[] | null;
-    like_count: number;
+    likeCount: number;
     like_state: number;
     theme_id: number;
-    category: string
+    category: string;
+    tags: string
   }
   declare interface UserAttributes {
     id: number;
@@ -55,7 +55,7 @@ declare interface TagAttributes {
     follower_count: number;
     /** 关注了多少人*/
     followe_count: number;
-    create_time: string;
+    createdAt: string;
   }
   declare interface CommentAttributes {
     id: number;
@@ -64,7 +64,7 @@ declare interface TagAttributes {
     content: string;
     reply: null | number;
     comment_pics: string;
-    create_time: Date;
+    createdAt: Date;
     type: "article" | "problem";
   }
   
@@ -76,7 +76,7 @@ declare interface TagAttributes {
     is_allow: number;
     logo_file_name: string;
     logo_url: string;
-    create_time: Date;
+    createdAt: Date;
   }
   
   declare interface NoticeAttributes {
@@ -85,7 +85,7 @@ declare interface TagAttributes {
     relation_id: number;
     type: string;
     is_read: number;
-    create_time: Date;
+    createdAt: Date;
   }
   
   declare interface ProblemAttributes {
@@ -98,8 +98,8 @@ declare interface TagAttributes {
     language: string[] | null;
     author: number;
     answer_id?: number;
-    view_count: number;
-    create_time: string;
+    viewCount: number;
+    createdAt: string;
     update_time?: string;
   }
   
@@ -108,6 +108,6 @@ declare interface TagAttributes {
     problem_id: number;
     content: string;
     author: number;
-    create_time: string;
+    createdAt: string;
   }
   

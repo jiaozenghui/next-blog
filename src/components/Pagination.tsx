@@ -18,7 +18,6 @@ const RANGE = 1
 interface PaginationProps {
   pageSize: number
   page: number
-  setPage: any
 }
  
 export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
@@ -36,7 +35,7 @@ export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
       if (!dotBefore) {
         dotBefore = true
         return (
-          <PaginationItem>
+          <PaginationItem key={Math.random()}>
             <PaginationEllipsis />
           </PaginationItem>
         )
@@ -47,7 +46,7 @@ export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
       if (!dotAfter) {
         dotAfter = true
         return (
-          <PaginationItem>
+          <PaginationItem key={Math.random()}>
             <PaginationEllipsis />
           </PaginationItem>
         )
@@ -58,7 +57,6 @@ export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
       .fill(0)
       .map((_, index) => {
         const pageNumber = index + 1
-        const isActive = pageNumber === page
         if (page <= RANGE * 2 + 1 && pageNumber > page + RANGE && pageNumber < pageSize - RANGE + 1) {
           return renderDotAfter(index)
         } else if (page > RANGE * 2 + 1 && page < pageSize - RANGE * 2) {
@@ -72,11 +70,10 @@ export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
         }
  
         return (
-          <PaginationItem key={Math.random()}>
+          <PaginationItem  key={Math.random()}>
             <PaginationLink
-              className={cx({
-                'bg-gary dark:bg-primary text-white   dark:text-secondary pointer-events-none': isActive
-              }, 'w-6 h-6 flex  items-center justify-center border border-gray text-gray rounded')}
+              isActive={pageNumber === page}
+              href={`/articles/${pageNumber}`}
             >
               {pageNumber}
             </PaginationLink>
@@ -88,20 +85,21 @@ export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
   return (
     <PaginationShadui>
       <PaginationContent>
-        <PaginationItem>
+        <PaginationItem key={Math.random()}>
           <PaginationPrevious
+            href={`/articles/${page -1}`}
             className={cx({
-              'pointer-events-none': page === 1,
-            }, 'border-gray border p-0 pl-0.5 flex items-center justify-center h-6 w-6  rounded  text-gary')}
+              'pointer-events-none': page === 1
+            }, '')}
           />
         </PaginationItem>
         {renderPagination()}
-        <PaginationItem>
+        <PaginationItem key={Math.random()}>
           <PaginationNext
-            // onClick={() => setPage((page: number) => page + 1)}
+            href={`/articles/${page +1}`}
             className={cx({
               'pointer-events-none': page === pageSize
-            }, 'border-gray border p-0 pr-0.5 flex items-center justify-center h-6 w-6  rounded  text-gary')}
+            }, '')}
           />
         </PaginationItem>
       </PaginationContent>

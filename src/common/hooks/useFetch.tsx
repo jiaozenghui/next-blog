@@ -14,6 +14,7 @@ type FetchResult<T, J> = {
 };
 
 interface optionType {
+  isUnSend?: boolean
   /** 是否手动请求*/
   manual?: true;
   /** 依赖数组，触发自动更新*/
@@ -108,9 +109,13 @@ export default function useFetch<T, J>(
 
   const fetchData = async (param?: J) => {
     setIsLoading(true);
+
     try {
-      const response = await request(param!);
-      setData(response);
+      if (!option.isUnSend) {
+        const response = await request(param!);
+        setData(response);
+      }
+
     } catch (error) {
       setError(error as AxiosError<T>);
     } finally {

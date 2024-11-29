@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  ...(typeof window !== "undefined"?{}:{baseURL: process.env.API_BASE_URL}),
+  ...(typeof window !== "undefined"
+    ? {}
+    : { baseURL: process.env.API_BASE_URL }),
 });
 
 type Fn = (data: FcResponse<any>) => unknown;
@@ -20,9 +22,8 @@ export interface FcResponse<T> {
 apiClient.interceptors.request.use(
   (config) => {
     // 客户端才修改请求头
-    
-    if (typeof window !== "undefined") {
 
+    if (typeof window !== "undefined") {
     }
 
     return config;
@@ -36,8 +37,8 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => {
     if (response.status !== 200) return Promise.reject(response.data);
-    handleAuthError(response.data.errno)
-    handleGeneralError(response.data.errno, response.data.message)
+    // handleAuthError(response.data.errno)
+    // handleGeneralError(response.data.errno, response.data.message)
     return response;
   },
   (error) => {

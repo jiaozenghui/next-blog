@@ -37,7 +37,7 @@ const AuthLinks = () => {
       )}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="flex md:hidden "  size="icon">
+          <Button variant="ghost" className="flex md:hidden " size="icon">
             <User className="h-[1.2rem] w-[1.2rem] scale-100 transition-all " />
           </Button>
         </DropdownMenuTrigger>

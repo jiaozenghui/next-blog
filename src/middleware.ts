@@ -1,19 +1,18 @@
-export async function middleware(request: NextRequest) {
-    const token = await getToken({
-      req: request,
-      secret: process?.env?.NEXTAUTH_SECRET,
-      cookieName: ACCESS_TOKEN, // next-auth.session-token
-    });
-  
-    // redirect user without access to login
-    if (token?.token && Date.now() / 1000 < token?.accessTokenExpires) {
-      return NextResponse.redirect("/login");
-    }
-  
-    // redirect user without admin access to login
-    if (!token?.isAdmin) {
-      return NextResponse.redirect("/login");
-    }
-  
-    return NextResponse.next();
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
+
+export default async function authMiddleware(req, res, next) {
+  // 获取当前会话
+  const session = await getToken(req);
+  console.log(session);
+  // 如果没有会话，则重定向到登录页面
+  if (!session) {
+    return NextResponse.redirect("http://localhost:3000/login");
+  } else {
+    NextResponse.next();
   }
+}
+
+export const config = {
+  matcher: ["/articles/:path*", "/dashboard/:path*"],
+};

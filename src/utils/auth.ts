@@ -72,12 +72,14 @@ export const authOptions: AuthOptions = {
       session.user = token.user;
       return session;
     },
+
   },
   jwt: {
     secret: process.env.JWT_SECRET,
   },
   pages: {
     signIn: "/",
+    signOut: '/login'
   },
 };
 

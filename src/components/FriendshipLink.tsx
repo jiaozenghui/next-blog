@@ -26,7 +26,7 @@ type CardProps = React.ComponentProps<typeof Card>;
 export function FriendshipLink({ className, ...props }: CardProps) {
   return (
     <Card className={cn(className)} {...props}>
-      <CardHeader>
+      <CardHeader className="card_title">
         <CardTitle className="text-lg">Friendship link</CardTitle>
       </CardHeader>
       <CardContent className="grid gap-4">

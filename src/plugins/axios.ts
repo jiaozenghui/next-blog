@@ -1,4 +1,6 @@
 import axios from "axios";
+import { handleAuthError, handleConfigureAuth, handleGeneralError, handleNetworkError } from "./tools";
+
 
 const apiClient = axios.create({
   ...(typeof window !== "undefined"
@@ -17,15 +19,10 @@ export interface FcResponse<T> {
   message: string;
   data: T;
 }
-
 // 请求拦截器
 apiClient.interceptors.request.use(
-  (config) => {
-    // 客户端才修改请求头
-
-    if (typeof window !== "undefined") {
-    }
-
+  async(config) => {
+    config = await handleConfigureAuth(config)
     return config;
   },
   (error) => {
@@ -35,18 +32,17 @@ apiClient.interceptors.request.use(
 
 // 响应拦截器
 apiClient.interceptors.response.use(
-  (response) => {
+  async(response) => {
     if (response.status !== 200) return Promise.reject(response.data);
-    // handleAuthError(response.data.errno)
-    // handleGeneralError(response.data.errno, response.data.message)
+      await handleAuthError(response.data.errno)
+      handleGeneralError(response.data.errno, response.data.message)
     return response;
   },
   (error) => {
     if (axios.isCancel(error)) {
       return new Promise(() => {}); // 返回一个空 Promise 取消请求不触发 catch
     }
-    Promise.reject(error.response);
-
+    handleNetworkError(error?.response?.status)
     return Promise.reject({
       ...error.response?.data,
       status: error.response?.status,

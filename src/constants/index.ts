@@ -33,6 +33,18 @@ export const tagList = [
   {
     id: "vue",
     label: "Vue",
+  },
+  {
+    id: "react",
+    label: "React",
+  },
+  {
+    id: "webpack",
+    label: "Webpack",
+  },
+  {
+    id: "mongodb",
+    label: "Mongodb",
   }
 ] 
 

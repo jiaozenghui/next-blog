@@ -24,18 +24,16 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 
+import { withoutAuth } from "./WithoutAuth";
+
 type  UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+const UserAuthForm = ({ className, ...props }: UserAuthFormProps)=> {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
 
   const { toast } = useToast()
   const router = useRouter();
-
- 
-  console.log('test666666666666666666666666')
-
   const formSchema = z.object({
     email: z.string().min(2, {
       message: "Username must be at least 2 characters.",
@@ -153,3 +151,4 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   )
 }
 
+export default withoutAuth(UserAuthForm)

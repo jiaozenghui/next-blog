@@ -54,7 +54,12 @@ const nextConfig = {
         source: "/api/articles/:path*",
         destination: `${process.env.API_BASE_URL}/api/articles/:path*`,
         basePath: false
-      }
+      },
+      // {
+      //   source: "/api/auth/:path*",
+      //   destination: `${process.env.API_BASE_URL}/api/auth/:path*`,
+      //   basePath: false
+      // }
     ]
   }
 };

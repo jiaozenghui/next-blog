@@ -53,7 +53,6 @@ export interface UploadFile {
   // 上传为图书时候的预览地址
   url?: string;
 }
-debugger
 const formSchema = z.object({
   title: z.string().min(2),
   desc: z.string().min(2),
@@ -185,14 +184,14 @@ const ArticleEditor = (props: propsType) => {
         const [e, r] = await Patch<articleListItemType>(
           `/api/articles/update/${props.articleId}`,
           postBody,
-          config
+          //config
         );
         handleBack(r, e);
       } else {
         const [e, r] = await Post<articleListItemType>(
           "/api/articles/create",
           postBody,
-          config
+          //config
         );
         handleBack(r, e);
       }

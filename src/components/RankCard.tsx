@@ -4,16 +4,21 @@ import { Get } from "@axios";
 import { type ListData } from "axios";
 import { articleListItemType } from "@/types/article";
 
-const PopularCard = async () => {
+interface cardProps {
+  title: string;
+  type: string;
+  sort:string
+}
+const RankCard = async ({title, type, sort}: cardProps) => {
   const [err, data] = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
-    { SortKey: 'likeCount',customSort: 'dsc', pageIndex: 0, pageSize: 6 }
+    { SortKey: type, customSort: sort, pageIndex: 0, pageSize: 6 }
   );
 
   return (
     <Card>
-      <CardHeader className="p-3 pb-0">
-        <CardTitle className="text-lg">Popular Articles</CardTitle>
+      <CardHeader className="card_title">
+        <CardTitle className="text-lg">{title}</CardTitle>
       </CardHeader>
       <CardContent className="grid gap-0 divide-y divide-dashed">
         {data?.data?.list?.map((item: articleListItemType) => (
@@ -34,4 +39,4 @@ const PopularCard = async () => {
   );
 };
 
-export default PopularCard;
+export default RankCard;

@@ -1,23 +1,16 @@
-"use client";
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { sidebarLinks } from "@/constants";
-import { cn } from "@/lib/utils";
+
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import { HeaderMenu } from "./Menu";
 import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 import AuthLinks from "./authLinks/AuthLinks";
 
+
 const Navbar = () => {
-  const pathname = usePathname();
+
 
   return (
     <section className="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75">
@@ -32,7 +25,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <HeaderMenu />
             <ThemeToggle />
-            <AuthLinks />
+            <AuthLinks  />
           </div>
         </div>
       </div>

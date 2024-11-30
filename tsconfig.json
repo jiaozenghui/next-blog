@@ -24,6 +24,6 @@
       "@axios": ["./src/plugins/axios.ts"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts", "src/middleware.ts1"],
   "exclude": ["node_modules"]
 }

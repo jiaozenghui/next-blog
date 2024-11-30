@@ -19,6 +19,8 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-react": "^1.0.6",
     "aieditor": "^1.2.7",
     "axios": "^1.7.8",
     "class-variance-authority": "^0.7.0",

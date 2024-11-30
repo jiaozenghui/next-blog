@@ -67,6 +67,11 @@ export interface GenerateThumbnailProps {
   setImagePrompt: Dispatch<SetStateAction<string>>;
 }
 
+export interface WEditorProps {
+  setContent: Dispatch<SetStateAction<string>>;
+  content: string;
+}
+
 export interface LatestPodcastCardProps {
   imgUrl: string;
   title: string;

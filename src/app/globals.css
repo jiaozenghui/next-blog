@@ -121,7 +121,7 @@
     @apply pt-2 pb-1
   }
   .right_sidebar {
-    @apply sticky right-0 top-0 flex w-[310px] flex-col overflow-y-auto border-none pl-[20px] pt-4 max-xl:hidden;
+    @apply sticky left-0 top-0 flex w-[310px] flex-col overflow-y-auto border-none pr-[20px] pt-4 max-xl:hidden;
     -ms-overflow-style: none;
     /* IE 和 Edge */
     scrollbar-width: none;

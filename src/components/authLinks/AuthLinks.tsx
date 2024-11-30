@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { isProtectRoute } from "@/lib/utils";
-import path from "path";
 const AuthLinks = () => {
   const pathname = usePathname();
   const router = useRouter()

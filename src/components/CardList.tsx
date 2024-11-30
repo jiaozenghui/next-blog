@@ -17,8 +17,6 @@ const CardList = async ({ page, pageSize = 2 }: pageProps) => {
     "/api/articles/list",
     { pageIndex: page - 1, pageSize }
   );
-  console.log(err)
-  console.log('888888888888888888888888888')
 
   return (
     <>

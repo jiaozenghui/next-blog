@@ -3,20 +3,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Get } from "@axios";
 import { type ListData } from "axios";
 import { articleListItemType } from "@/types/article";
-
+import { cn } from "@/lib/utils";
 interface cardProps {
   title: string;
   type: string;
-  sort:string
+  sort:string;
+  className?: string
 }
-const RankCard = async ({title, type, sort}: cardProps) => {
+const RankCard = async ({title, type, sort, className}: cardProps) => {
   const [err, data] = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
     { SortKey: type, customSort: sort, pageIndex: 0, pageSize: 6 }
   );
 
   return (
-    <Card>
+    <Card className={cn(className)}>
       <CardHeader className="card_title">
         <CardTitle className="text-lg">{title}</CardTitle>
       </CardHeader>

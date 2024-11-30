@@ -29,11 +29,11 @@ import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 // import GeneratePodcast from "@/components/GeneratePodcast"
 import GenerateThumbnail from "@/components/GenerateThumbnail";
+import WEditor from "./WEditor";
 import { Loader } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 // import { useMutation } from "convex/react"
 import { useRouter } from "next/navigation";
-import LoaderSpinner from "@/components/LoaderSpinner";
 import axios, { Post, Patch, FcResponse } from "@axios";
 
 import useFetch from "@/common/hooks/useFetch";
@@ -60,11 +60,6 @@ const formSchema = z.object({
   tags: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one item.",
   }),
-});
-
-const AIEditor = dynamic(() => import("@/components/AIEditor"), {
-  ssr: false,
-  loading: () => <LoaderSpinner />,
 });
 
 export const initValue = {
@@ -132,11 +127,14 @@ const ArticleEditor = (props: propsType) => {
       form.setValue("desc", data.desc);
       form.setValue("title", data.title);
       form.setValue("category", data.category);
-      form.setValue("tags", data.tags? data.tags.split('|'): []);
+      form.setValue("tags", data.tags ? data.tags.split("|") : []);
       if (data.coverImg) {
         setImageUrl(data.coverImg);
       }
-      setContent(data.content);
+      if (data.content) {
+        setContent(data.content);
+      }
+      
     }
   }, [data, form]);
 
@@ -172,26 +170,21 @@ const ArticleEditor = (props: propsType) => {
         coverImg: imageUrl,
         content: content,
         category: data.category,
-        tags: data.tags.join('|')
+        tags: data.tags.join("|"),
       };
-      const config = {
-        headers: {
-          Authorization: `Bearer ${session?.accessToken}`,
-        },
-      };
-
+      const config = {needAuth: true}
       if (props.articleId) {
         const [e, r] = await Patch<articleListItemType>(
           `/api/articles/update/${props.articleId}`,
           postBody,
-          //config
+          config
         );
         handleBack(r, e);
       } else {
         const [e, r] = await Post<articleListItemType>(
           "/api/articles/create",
           postBody,
-          //config
+          config
         );
         handleBack(r, e);
       }
@@ -241,8 +234,9 @@ const ArticleEditor = (props: propsType) => {
                   </FormLabel>
                   <FormControl>
                     <Select
-                    {...field}
-                    onValueChange={field.onChange} defaultValue={field.value}
+                      {...field}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
                     >
                       <FormControl>
                         <SelectTrigger className="w-[180px]">
@@ -338,13 +332,14 @@ const ArticleEditor = (props: propsType) => {
             </div>
           </div>
           <div className="flex flex-col pt-10">
-            <AIEditor
+            {/* <AIEditor
               placeholder="描述代码的作用，支持 Markdown 语法.."
               style={{ height: 220 }}
               value={content}
               onChange={(val) => setContent(val)}
-            />
-
+            /> */}
+            <Label className="text-16 font-bold  ">Content</Label>
+            <WEditor content={content} setContent={setContent} />
             <div className="my-10 w-full">
               <Button type="submit">
                 {isSubmitting ? (

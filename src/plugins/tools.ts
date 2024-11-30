@@ -8,7 +8,7 @@ export const handleConfigureAuth = async(config: ICustomAxiosConfig) => {
     if (typeof window !== "undefined") {
         const session = await getSession()
         if (session&&session.accessToken) {
-          const isExpired = new Date(session?.expires) > new Date()? true: false
+          const isExpired = new Date(session?.expires) < new Date()? true: false
           if (!isExpired && config.needAuth) {
             config.headers['authorization'] = `Bearer ${session.accessToken}` || ''  
           }
@@ -61,7 +61,7 @@ export const handleNetworkError = (errStatus?: number): void => {
     //if (authErrMap.hasOwnProperty(errno)) {
     if (Object.prototype.hasOwnProperty.call(authErrMap, errno)) {
       toast({title:'错误', description: authErrMap[errno]})
-      await signOut()
+      //await signOut()
       return false
     }
     return true

@@ -1,6 +1,11 @@
 import axios from "axios";
-import { handleAuthError, handleConfigureAuth, handleGeneralError, handleNetworkError } from "./tools";
-
+import {
+  handleAuthError,
+  handleConfigureAuth,
+  handleGeneralError,
+  handleNetworkError,
+} from "./tools";
+import { toast } from "@/components/ui/use-toast";
 
 const apiClient = axios.create({
   ...(typeof window !== "undefined"
@@ -21,8 +26,11 @@ export interface FcResponse<T> {
 }
 // 请求拦截器
 apiClient.interceptors.request.use(
-  async(config) => {
-    config = await handleConfigureAuth(config)
+  async (config) => {
+    if (typeof window !== "undefined") {
+      config = await handleConfigureAuth(config);
+    }
+
     return config;
   },
   (error) => {
@@ -32,17 +40,23 @@ apiClient.interceptors.request.use(
 
 // 响应拦截器
 apiClient.interceptors.response.use(
-  async(response) => {
+  async (response) => {
     if (response.status !== 200) return Promise.reject(response.data);
-      await handleAuthError(response.data.errno)
-      handleGeneralError(response.data.errno, response.data.message)
+    if (typeof window !== "undefined") {
+      await handleAuthError(response.data.errno);
+      handleGeneralError(response.data.errno, response.data.message);
+    }
+
     return response;
   },
   (error) => {
     if (axios.isCancel(error)) {
       return new Promise(() => {}); // 返回一个空 Promise 取消请求不触发 catch
     }
-    handleNetworkError(error?.response?.status)
+    if (typeof window !== "undefined") {
+      handleNetworkError(error?.response?.status);
+    }
+
     return Promise.reject({
       ...error.response?.data,
       status: error.response?.status,

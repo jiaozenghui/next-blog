@@ -41,6 +41,7 @@ apiClient.interceptors.request.use(
 // 响应拦截器
 apiClient.interceptors.response.use(
   async (response) => {
+    debugger;
     if (response.status !== 200) return Promise.reject(response.data);
     if (typeof window !== "undefined") {
       await handleAuthError(response.data.errno);

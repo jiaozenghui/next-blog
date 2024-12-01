@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge"
-import {tagList} from '@/constants'
+import { tagList } from '@/constants'
 import {
   Card,
   CardContent,
@@ -18,10 +18,10 @@ export function PopularTags({ className, ...props }: CardProps) {
         <CardTitle className="text-lg">Popular Tags</CardTitle>
       </CardHeader>
       <CardContent >
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-3 mt-2">
           {tagList.map((tag, index) => (
             <Badge
-            className="justify-center cursor-pointer"
+              className="justify-center cursor-pointer"
               key={index}
             >
               {tag.label}

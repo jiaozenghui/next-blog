@@ -29,7 +29,6 @@ import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 // import GeneratePodcast from "@/components/GeneratePodcast"
 import GenerateThumbnail from "@/components/GenerateThumbnail";
-import WEditor from "./WEditor";
 import { Loader } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 // import { useMutation } from "convex/react"
@@ -41,18 +40,9 @@ import { Skeletons } from "@/components/Skeletons";
 import { articleListItemType } from "@/types/article";
 import { categoryList } from "@/constants";
 import { tagList } from "@/constants";
+// import W1Editor from "./WEditor";
 
-type UploadStatus = "ready" | "loading" | "success" | "error";
-export interface UploadFile {
-  uid: string;
-  size: number;
-  name: string;
-  status: UploadStatus;
-  raw: File;
-  resp?: any;
-  // 上传为图书时候的预览地址
-  url?: string;
-}
+
 const formSchema = z.object({
   title: z.string().min(2),
   desc: z.string().min(2),
@@ -89,8 +79,9 @@ interface propsType {
 }
 export type modalPropsType = Pick<propsType, "submit">;
 
+const WEditor = dynamic(() => import('@/components/WEditor'), { ssr: false });
+
 const ArticleEditor = (props: propsType) => {
-  const { data: session } = useSession();
   const router = useRouter();
 
   const [imagePrompt, setImagePrompt] = useState("");
@@ -113,7 +104,8 @@ const ArticleEditor = (props: propsType) => {
     },
   });
 
-  const { data, isLoading, refetch } = useFetch<articleListItemType, any>(
+
+  const { data, isLoading } = useFetch<articleListItemType, any>(
     () =>
       axios.get(`/api/articles/${props.articleId}`).then((res) => {
         return res.data.data;
@@ -134,7 +126,7 @@ const ArticleEditor = (props: propsType) => {
       if (data.content) {
         setContent(data.content);
       }
-      
+
     }
   }, [data, form]);
 
@@ -152,6 +144,8 @@ const ArticleEditor = (props: propsType) => {
       throw new Error("opt failed");
     }
   };
+
+
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
@@ -172,7 +166,7 @@ const ArticleEditor = (props: propsType) => {
         category: data.category,
         tags: data.tags.join("|"),
       };
-      const config = {needAuth: true}
+      const config = { needAuth: true }
       if (props.articleId) {
         const [e, r] = await Patch<articleListItemType>(
           `/api/articles/update/${props.articleId}`,
@@ -189,8 +183,10 @@ const ArticleEditor = (props: propsType) => {
         handleBack(r, e);
       }
     } catch (error) {
+      console.log(error)
+      debugger
       toast({
-        title: "Error",
+        title: "Errorcghgf",
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -198,7 +194,7 @@ const ArticleEditor = (props: propsType) => {
   }
 
   return !isLoading ? (
-    <section className="mt-6 flex flex-col">
+    <section className="mt-6 flex flex-col px-1">
       <h1 className="text-20 font-bold  ">Create Podcast</h1>
 
       <Form {...form}>
@@ -280,10 +276,10 @@ const ArticleEditor = (props: propsType) => {
                                   return checked
                                     ? field.onChange([...field.value, item.id])
                                     : field.onChange(
-                                        field.value?.filter(
-                                          (value) => value !== item.id
-                                        )
-                                      );
+                                      field.value?.filter(
+                                        (value) => value !== item.id
+                                      )
+                                    );
                                 }}
                               />
                             </FormControl>
@@ -344,7 +340,7 @@ const ArticleEditor = (props: propsType) => {
               <Button type="submit">
                 {isSubmitting ? (
                   <>
-                    Submit
+                    Submitting
                     <Loader size={20} className="animate-spin ml-2" />
                   </>
                 ) : (

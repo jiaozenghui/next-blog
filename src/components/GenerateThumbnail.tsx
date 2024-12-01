@@ -123,7 +123,7 @@ const GenerateThumbnail = ({
             />
           </div>
           <div className="w-full max-w-[200px]">
-            <Button
+            <button
               type="submit"
               onClick={generateImage}
             >
@@ -135,7 +135,7 @@ const GenerateThumbnail = ({
               ) : (
                 "Generate"
               )}
-            </Button>
+            </button>
           </div>
         </div>
       ) : (

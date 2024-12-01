@@ -18,7 +18,7 @@ interface CardProps extends React.ComponentProps<typeof Card> {
   articleId: number
 };
 
-export function HeaderActions({ articleId}: CardProps) {
+export function HeaderActions({ articleId }: CardProps) {
 
   const { status } = useSession();
   const Delete = async () => {
@@ -43,7 +43,7 @@ export function HeaderActions({ articleId}: CardProps) {
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href={`/articles/editor/${articleId}`} >
+                  <Link className="block w-full" href={`/articles/editor/${articleId}`} >
                     Edit
                   </Link>
                 </DropdownMenuItem>

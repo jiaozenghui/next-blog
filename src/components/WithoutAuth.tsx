@@ -17,10 +17,6 @@ export function withoutAuth<P extends object>(WrappedComponent: React.ComponentT
       return <div className="flex justify-center items-center h-screen"><LoaderSpinner/></div>
     }
 
-    if (status === "authenticated") {
-      return null
-    }
-
     return <WrappedComponent {...props} />
   }
 }

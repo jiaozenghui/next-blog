@@ -128,7 +128,7 @@ const ArticleEditor = (props: propsType) => {
       }
 
     }
-  }, [data, form]);
+  }, [data, isLoading, form]);
 
   const handleBack = (
     r: FcResponse<articleListItemType> | undefined,
@@ -140,8 +140,6 @@ const ArticleEditor = (props: propsType) => {
       });
       setIsSubmitting(false);
       router.push("/");
-    } else {
-      throw new Error("opt failed");
     }
   };
 
@@ -152,7 +150,7 @@ const ArticleEditor = (props: propsType) => {
       setIsSubmitting(true);
       if (!imageUrl) {
         toast({
-          title: "Please generate image",
+          title: "cover image has not generate",
         });
         setIsSubmitting(false);
         //throw new Error("Please generate image");
@@ -183,10 +181,9 @@ const ArticleEditor = (props: propsType) => {
         handleBack(r, e);
       }
     } catch (error) {
-      console.log(error)
-      debugger
       toast({
-        title: "Errorcghgf",
+        title: "Error",
+        description: error as string,
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -232,7 +229,7 @@ const ArticleEditor = (props: propsType) => {
                     <Select
                       {...field}
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+
                     >
                       <FormControl>
                         <SelectTrigger className="w-[180px]">

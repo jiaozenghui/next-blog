@@ -5,7 +5,6 @@ import {
   handleGeneralError,
   handleNetworkError,
 } from "./tools";
-import { toast } from "@/components/ui/use-toast";
 
 const apiClient = axios.create({
   ...(typeof window !== "undefined"
@@ -40,14 +39,12 @@ apiClient.interceptors.request.use(
 
 // 响应拦截器
 apiClient.interceptors.response.use(
-  async (response) => {
-    debugger;
+  (response) => {
     if (response.status !== 200) return Promise.reject(response.data);
     if (typeof window !== "undefined") {
-      await handleAuthError(response.data.errno);
+      handleAuthError(response.data.errno);
       handleGeneralError(response.data.errno, response.data.message);
     }
-
     return response;
   },
   (error) => {

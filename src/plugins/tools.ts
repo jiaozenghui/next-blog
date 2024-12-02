@@ -7,10 +7,7 @@ export const handleConfigureAuth = async (config: ICustomAxiosConfig) => {
   if (typeof window !== "undefined") {
     const session = await getSession();
     if (session && session.accessToken) {
-      const isExpired = new Date(session?.expires) < new Date() ? true : false;
-      if (!isExpired && config.needAuth) {
-        config.headers["authorization"] = `Bearer ${session.accessToken}` || "";
-      }
+      config.headers["authorization"] = `Bearer ${session.accessToken}` || "";
     }
   }
   return config;
@@ -45,15 +42,8 @@ export const handleNetworkError = (errStatus?: number): void => {
 };
 
 export const handleAuthError = (errno: string): boolean => {
-  const authErrMap: any = {
+  const authErrMap:any = {
     101004: "登录失效，需要重新登录", // token 失效
-    "10032": "您太久没登录，请重新登录~", // token 过期
-    "10033": "账户未绑定角色，请联系管理员绑定角色",
-    "10034": "该用户未注册，请联系管理员注册用户",
-    "10035": "code 无法获取对应第三方平台用户",
-    "10036": "该账户未关联员工，请联系管理员做关联",
-    "10037": "账号已无效",
-    "10038": "账号未找到",
   };
 
   //if (authErrMap.hasOwnProperty(errno)) {

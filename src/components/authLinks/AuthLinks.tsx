@@ -16,7 +16,7 @@ import { isProtectRoute } from "@/lib/utils";
 const AuthLinks = () => {
   const pathname = usePathname();
   const router = useRouter()
-  const { status } = useSession();
+  const { data:session } = useSession();
   const [needAuth, setNeedAuth] = useState(false)
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const AuthLinks = () => {
   };
   return (
     <>
-      {status === "authenticated" ? (
+      {session&&session?.user ? (
         <>
           <Link href="/articles/editor" className={styles.link}>
             Write

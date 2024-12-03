@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { menuList, menuProps,tagProps } from "@/constants";
+import { menuList, menuProps, tagProps } from "@/constants";
 
 
 export function HeaderMenu() {
@@ -28,11 +28,11 @@ export function HeaderMenu() {
                 </Link>
                 <NavigationMenuContent>
                   <ul className="grid  gap-3 p-4  md:grid-cols-3 w-[300px] ">
-                    {item.children.map((tag:tagProps) => (
+                    {item.children.map((tag: tagProps) => (
                       <ListItem
                         key={tag.id}
                         title={tag.label}
-                        href={tag.id}
+                        href={`/articles/${item.id}/${tag.id}`}
                       >
                       </ListItem>
                     ))}

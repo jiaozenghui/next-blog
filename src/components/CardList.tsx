@@ -11,13 +11,14 @@ interface pageProps {
   type?: string
   page?: number
   pageSize?: number
-  query?:string | null
+  query?: string | null,
+  tags?: string | null
 }
 
-const CardList = async ({ type= 'all', page=1, pageSize = 2, query='' }: pageProps) => {
+const CardList = async ({ type = 'all', page = 1, pageSize = 2, query = '', tags = '' }: pageProps) => {
   const [err, data] = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
-    { pageIndex: page - 1, pageSize, ...((type==='all')?{}:{category: type}), query }
+    { pageIndex: page - 1, pageSize, ...((type === 'all' || type === 'search') ? {} : { category: type }), query, tags }
   );
 
   return (

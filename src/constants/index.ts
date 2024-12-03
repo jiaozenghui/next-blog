@@ -1,12 +1,24 @@
 export interface menuProps {
-  id: string,
-  label: string,
-  children?: tagProps[]
+  id: string;
+  label: string;
+  children?: tagProps[];
 }
 
+export const menuConfs = {
+  search: "Search",
+  all: "Latest published articles",
+  personal: "About me",
+  chart: "Charts",
+  screen: "Big Screen",
+  technology: "Technology",
+  life: "Life",
+} as const;
+
+export type pTypes = keyof typeof menuConfs;
+
 export interface tagProps {
-  id: string
-  label: string
+  id: string;
+  label: string;
 }
 
 export const sidebarLinks = [
@@ -26,7 +38,6 @@ export const sidebarLinks = [
     label: "Create Podcast",
   },
 ];
-
 
 export const tagList = [
   {
@@ -56,8 +67,8 @@ export const tagList = [
   {
     id: "mongodb",
     label: "Mongodb",
-  }
-] 
+  },
+];
 
 export const categoryList = [
   {
@@ -67,7 +78,7 @@ export const categoryList = [
   {
     id: "technology",
     label: "Technology",
-    children: tagList
+    children: tagList,
   },
   {
     id: "screen",
@@ -76,8 +87,8 @@ export const categoryList = [
   {
     id: "chart",
     label: "Charts",
-  }
-] 
+  },
+];
 
 export const menuList: menuProps[] = [
   {
@@ -87,7 +98,7 @@ export const menuList: menuProps[] = [
   {
     id: "technology",
     label: "Technology",
-    children: tagList
+    children: tagList,
   },
   {
     id: "screen",
@@ -100,13 +111,5 @@ export const menuList: menuProps[] = [
   {
     id: "personal",
     label: "About me",
-  }
-] 
-export const menuConfs: { [key: string]: string }= {
-  all: 'Latest published articles',
-  personal: 'About me',
-  chart: 'Charts',
-  screen: 'Big Screen',
-  technology: 'Technology',
-  life: 'Life'
-}
+  },
+];

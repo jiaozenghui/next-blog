@@ -18,7 +18,7 @@ const Navbar = () => {
               <Image src="/icons/logo.svg" alt="logo" width={23} height={27} />
               <h1 className="text-24 font-extrabold    ml-2">Jzh个人博客</h1>
             </Link>
-            <HeaderMenu  />
+            <HeaderMenu />
           </div>
           <div className="flex items-center gap-2">
             <SearchInput></SearchInput>

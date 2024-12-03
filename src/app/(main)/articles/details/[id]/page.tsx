@@ -18,7 +18,7 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <>
-      <article className=" break-all flex-1 w-full  bg-white pb-5 shadow-sm px-2">
+      <div className=" break-all flex-1 w-full   pb-5 shadow-sm px-2">
         <h1 className="text-4xl my-3 font-semibold">{data.title}</h1>
         <div className="my-3 flex text-muted-foreground">
           <Time time={data.createdAt} />
@@ -26,7 +26,7 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
           <Views className="ml-3" viewCount={data.viewCount} />
         </div>
         <ArticleView content={data.content} />
-      </article >
+      </div >
       <AnchorBar />
     </>
   )

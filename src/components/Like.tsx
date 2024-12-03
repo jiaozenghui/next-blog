@@ -18,17 +18,12 @@ export default function Like({
 }: LikeProps) {
   const { data: session } = useSession();
   const [likesCount, setLikeCount] = useState(likeCount);
-  const config = {
-    headers: {
-      Authorization: `Bearer ${session?.accessToken}`,
-    },
-  };
+
 
   const updateLikeCount = async () => {
     const [e, r] = await Patch<articleListItemType>(
       `/api/articles/change/likeCount/${articleId}`,
-      {},
-      config
+      {}
     );
     if (r && r.errno === 0) {
       setLikeCount(r.data.likeCount);

@@ -1,7 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { protectedRoutes } from "@/routes"
-import { isWebpackClientOnlyLayer } from "next/dist/build/utils"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

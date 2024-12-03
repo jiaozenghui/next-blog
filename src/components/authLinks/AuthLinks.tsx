@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,17 +16,17 @@ import { isProtectRoute } from "@/lib/utils";
 const AuthLinks = () => {
   const pathname = usePathname();
   const router = useRouter()
-  const { data:session } = useSession();
+  const { status, data: session } = useSession();
   const [needAuth, setNeedAuth] = useState(false)
-
+  console.log(status)
   useEffect(() => {
     setNeedAuth(isProtectRoute(pathname))
   }, [pathname])
 
   const Logout = async () => {
-    const param = needAuth?{ callbackUrl: "/login" }: {}
+    const param = needAuth ? { callbackUrl: "/login" } : {}
     const data = await signOut({
-      redirect:false,
+      redirect: false,
       ...param,
     });
     if (data?.url) {
@@ -35,7 +35,7 @@ const AuthLinks = () => {
   };
   return (
     <>
-      {session&&session?.user ? (
+      {session && session?.user ? (
         <>
           <Link href="/articles/editor" className={styles.link}>
             Write

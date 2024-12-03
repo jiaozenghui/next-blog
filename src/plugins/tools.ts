@@ -1,7 +1,7 @@
 import { InternalAxiosRequestConfig } from "axios";
 import { getSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
-
+import { redirect } from "next/navigation";
 type ICustomAxiosConfig = InternalAxiosRequestConfig & { needAuth?: boolean };
 export const handleConfigureAuth = async (config: ICustomAxiosConfig) => {
   if (typeof window !== "undefined") {
@@ -42,7 +42,7 @@ export const handleNetworkError = (errStatus?: number): void => {
 };
 
 export const handleAuthError = (errno: string): boolean => {
-  const authErrMap:any = {
+  const authErrMap: any = {
     101004: "登录失效，需要重新登录", // token 失效
   };
 
@@ -54,8 +54,7 @@ export const handleAuthError = (errno: string): boolean => {
       description: authErrMap[errno],
       variant: "destructive",
     });
-    //await signOut()
-    return false;
+    window.location.reload();
   }
   return true;
 };

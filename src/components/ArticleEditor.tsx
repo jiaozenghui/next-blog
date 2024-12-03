@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
+import { withAuth } from "./withAuth";
 import {
   Form,
   FormControl,
@@ -227,9 +227,9 @@ const ArticleEditor = (props: propsType) => {
                   </FormLabel>
                   <FormControl>
                     <Select
-                      {...field}
-                      onValueChange={field.onChange}
 
+                      onValueChange={field.onChange}
+                      defaultValue={data?.category}
                     >
                       <FormControl>
                         <SelectTrigger className="w-[180px]">
@@ -254,7 +254,7 @@ const ArticleEditor = (props: propsType) => {
               name="tags"
               render={() => (
                 <FormItem>
-                  <FormLabel className="text-16 font-bold  ">Tags</FormLabel>
+                  <FormLabel className="text-16 font-bold  block">Tags</FormLabel>
                   {tagList.map((item) => (
                     <FormField
                       key={item.id}
@@ -355,4 +355,4 @@ const ArticleEditor = (props: propsType) => {
     </div>
   );
 };
-export default ArticleEditor;
+export default withAuth(ArticleEditor);

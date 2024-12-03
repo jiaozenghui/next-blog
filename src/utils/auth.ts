@@ -63,33 +63,34 @@ export const authOptions: AuthOptions = {
       return token;
     },
     async session({ session, token }: any) {
-
       session.accessToken = token.accessToken;
       const response = await fetch(
         `${process.env.API_BASE_URL}/api/users/current`,
         {
           method: "GET",
-          headers: { "Content-Type": "application/json", authorization:`Bearer ${session.accessToken}` || "" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${session.accessToken}` || "",
+          },
         }
       );
       const data = await response.json();
-      if (!response.ok || data.errno !==0) {
-        session.user = null
+      if (!response.ok || data.errno !== 0) {
+        session = null;
         //throw new Error(`Can't find the user`);
       } else {
-        session.user = data.data
+        session.user = data.data;
       }
-      
+
       return session;
     },
-
   },
   jwt: {
-    secret: process.env.JWT_SECRET
+    secret: process.env.JWT_SECRET,
   },
   pages: {
     signIn: "/",
-    signOut: '/login'
+    signOut: "/login",
   },
 };
 

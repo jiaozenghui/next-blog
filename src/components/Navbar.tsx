@@ -5,6 +5,7 @@ import { HeaderMenu } from "./Menu";
 import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 import AuthLinks from "./authLinks/AuthLinks";
+import SearchInput from "./SearchInput";
 
 const Navbar = () => {
   return (
@@ -20,6 +21,7 @@ const Navbar = () => {
             <HeaderMenu  />
           </div>
           <div className="flex items-center gap-2">
+            <SearchInput></SearchInput>
             <ThemeToggle />
             <AuthLinks />
           </div>

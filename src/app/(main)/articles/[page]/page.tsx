@@ -1,10 +1,12 @@
 import CardList from "@/components/CardList";
 import { menuConfs } from "@/constants";
+
 const ArticleList = async ({
   params,
 }: {
   params: Promise<{ page: string }>;
 }) => {
+
   const pageParams = (await params).page;
  let ptype = 'all'
 
@@ -19,7 +21,7 @@ const ArticleList = async ({
     ptype = pageParams
   }
  }
-
+ 
   return (
     <section className="mt-3 flex w-full flex-col gap-3 ">
       <h1 className="text-xl font-bold  ">{menuConfs[ptype]}</h1>

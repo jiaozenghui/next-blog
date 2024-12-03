@@ -9,14 +9,15 @@ import { redirect } from 'next/navigation'
 
 interface pageProps {
   type?: string
-  page: number
+  page?: number
   pageSize?: number
+  query?:string | null
 }
 
-const CardList = async ({ type, page, pageSize = 2 }: pageProps) => {
+const CardList = async ({ type= 'all', page=1, pageSize = 2, query='' }: pageProps) => {
   const [err, data] = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
-    { pageIndex: page - 1, pageSize, ...((type==='all')?{}:{category: type}) }
+    { pageIndex: page - 1, pageSize, ...((type==='all')?{}:{category: type}), query }
   );
 
   return (

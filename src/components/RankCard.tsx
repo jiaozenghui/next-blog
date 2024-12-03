@@ -21,7 +21,7 @@ const RankCard = async ({title, type, sort, className}: cardProps) => {
       <CardHeader className="card_title">
         <CardTitle className="text-lg">{title}</CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-0 divide-y divide-dashed">
+      <CardContent className="">
         {data?.data?.list?.map((item: articleListItemType) => (
             <div key={item.id} className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
 

@@ -91,8 +91,8 @@ export function AnchorBar() {
     }
 
     return (
-        <div className="hidden text-sm lg:block  pl-[10px]">
-            <div className="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4 overflow-y-auto no-scrollbar">
+        <div className="hidden text-sm lg:block   pl-[10px]">
+            <div className="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] lg:w-[180px] pt-4 overflow-y-auto no-scrollbar">
                 <Tree tree={treeData} activeItem={activeHeading} />
             </div>
 

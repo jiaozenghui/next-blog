@@ -18,7 +18,7 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <>
-      <article className=" break-all bg-white pb-5 shadow-sm px-2">
+      <article className=" break-all flex-1 w-full  bg-white pb-5 shadow-sm px-2">
         <h1 className="text-4xl my-3 font-semibold">{data.title}</h1>
         <div className="my-3 flex text-muted-foreground">
           <Time time={data.createdAt} />

@@ -8,14 +8,15 @@ import { type ListData } from "axios";
 import { redirect } from 'next/navigation'
 
 interface pageProps {
+  type?: string
   page: number
   pageSize?: number
 }
 
-const CardList = async ({ page, pageSize = 2 }: pageProps) => {
+const CardList = async ({ type, page, pageSize = 2 }: pageProps) => {
   const [err, data] = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
-    { pageIndex: page - 1, pageSize }
+    { pageIndex: page - 1, pageSize, ...((type==='all')?{}:{category: type}) }
   );
 
   return (
@@ -24,6 +25,7 @@ const CardList = async ({ page, pageSize = 2 }: pageProps) => {
         {data?.data?.list?.map((item: any) => (
           <Card item={item} key={item._id} />
         ))}
+        {Number(data?.data.count) === 0 && <div className="flex justify-center w-full  pt-[50px]">暂未找到相关文章</div>}
       </div>
       {Number(data?.data.count) > 0 && <Pagination page={page} pageSize={Math.ceil(Number(data?.data.count) / pageSize)} />}
     </>

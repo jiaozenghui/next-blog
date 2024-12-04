@@ -34,6 +34,7 @@ declare interface TagAttributes {
     theme_id: number;
     category: string;
     tags: string
+    user:string
   }
   declare interface UserAttributes {
     id: number;

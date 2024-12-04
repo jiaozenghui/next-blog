@@ -1,10 +1,11 @@
-import NextAuth from "next-auth"
 
+import NextAuth from "next-auth";
 declare module "next-auth" {
   interface Session {
     accessToken?: string
     user: {
-      id: string
+      id:number
+      _id: string
       name: string
       email: string
       phone: string
@@ -13,51 +14,21 @@ declare module "next-auth" {
       last_login: string
       created_at: string
       updated_at: string
-      roles: Array<{
-        id: number
-        name: string
-        description: string
-        created_at: string
-        updated_at: string
-      }>
-      department: {
-        id: number
-        name: string
-        parent_id: number | null
-        icon: string
-        created_at: string
-        updated_at: string
-      }
+
     }
   }
 
   interface User {
     token: string
     user: {
+      _id:string,
+      username: string,
+      email: string,
+      type: string,
+      role: string,
+      createdAt: string,
+      updatedAt: string,
       id: number
-      name: string
-      email: string
-      phone: string
-      department_id: number
-      status: number
-      last_login: string
-      created_at: string
-      updated_at: string
-      roles: Array<{
-        id: number
-        name: string
-        description: string
-        created_at: string
-        updated_at: string
-      }>
-      department: {
-        id: number
-        name: string
-        parent_id: number | null
-        icon: string
-        created_at: string
-        updated_at: string
-      }
     }
   }
 }
@@ -66,30 +37,14 @@ declare module "next-auth/jwt" {
   interface JWT {
     accessToken?: string
     user?: {
+      _id:string,
+      username: string,
+      email: string,
+      type: string,
+      role: string,
+      createdAt: string,
+      updatedAt: string,
       id: number
-      name: string
-      email: string
-      phone: string
-      department_id: number
-      status: number
-      last_login: string
-      created_at: string
-      updated_at: string
-      roles: Array<{
-        id: number
-        name: string
-        description: string
-        created_at: string
-        updated_at: string
-      }>
-      department: {
-        id: number
-        name: string
-        parent_id: number | null
-        icon: string
-        created_at: string
-        updated_at: string
-      }
     }
   }
 }

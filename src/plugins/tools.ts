@@ -4,7 +4,7 @@ import { toast } from "@/components/ui/use-toast";
 import { redirect } from "next/navigation";
 type ICustomAxiosConfig = InternalAxiosRequestConfig & { needAuth?: boolean };
 export const handleConfigureAuth = async (config: ICustomAxiosConfig) => {
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && config.needAuth) {
     const session = await getSession();
     if (session && session.accessToken) {
       config.headers["authorization"] = `Bearer ${session.accessToken}` || "";

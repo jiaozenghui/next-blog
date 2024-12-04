@@ -24,7 +24,7 @@ const Card = ({ item }: { item: articleListItemType; key: string }) => {
         <div className="p-2 relative w-full">
           <h3 className=" flex text-xl  font-bold justify-between">
             <span>{item.title}</span>
-            <HeaderActions articleId={item.id} />
+            <HeaderActions articleId={item.id} userId={item.user}/>
           </h3>
           <p className="mt-2 line-clamp-3 text-muted-foreground  whitespace-break-spaces mb-6">
             {item.desc}

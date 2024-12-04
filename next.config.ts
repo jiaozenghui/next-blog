@@ -60,6 +60,11 @@ const nextConfig = {
         destination: `${process.env.API_BASE_URL}/api/utils/:path*`,
         basePath: false
       },
+      {
+        source: "/auth/getVeriCode",
+        destination: `${process.env.API_BASE_URL}/auth/getVeriCode`,
+        basePath: false
+      },
       // {
       //   source: "/api/auth/:path*",
       //   destination: `${process.env.API_BASE_URL}/api/auth/:path*`,

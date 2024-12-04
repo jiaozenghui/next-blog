@@ -14,7 +14,6 @@ type articleListItemType = Pick<
   | "state"
   | 'category'
   | 'tags'
-> & {
-  author_data: Pick<UserAttributes, "name">;
-};
+  | 'user'
+>;
 export type { articleListItemType };

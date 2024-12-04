@@ -113,3 +113,11 @@ export const menuList: menuProps[] = [
     label: "About me",
   },
 ];
+
+export const userMessageConfs: {[key:number]: string} = {
+  101001: '输入信息验证失败',
+  101005: '请勿频繁获取短信验证码',
+  101006: '验证码不正确',
+  101007: '验证码发送失败',
+
+}

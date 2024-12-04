@@ -16,17 +16,18 @@ import { useSession } from "next-auth/react";
 
 interface CardProps extends React.ComponentProps<typeof Card> {
   articleId: number
+  userId:string
 };
 
-export function HeaderActions({ articleId }: CardProps) {
+export function HeaderActions({ articleId, userId }: CardProps) {
 
-  const { status } = useSession();
+  const { status, data:session } = useSession();
   const Delete = async () => {
     console.log('delete')
   }
   return (
     <>
-      {status === "authenticated" ? (
+      {status === "authenticated"&& session?.user?._id === userId ? (
         <>
           <div className="flex items-center space-x-1 rounded-md ">
             <DropdownMenu>

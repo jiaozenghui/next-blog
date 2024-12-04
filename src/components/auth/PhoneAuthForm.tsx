@@ -54,7 +54,7 @@ const PhoneAuthForm = ({ className, ...props }: PhoneAuthFormProps) => {
       if (count <= 0) {
         setTimer(60);
         clearInterval(intervalId);
-        
+
         setCodeDisabled(false);
       }
       count--;
@@ -98,8 +98,8 @@ const PhoneAuthForm = ({ className, ...props }: PhoneAuthFormProps) => {
     setIsLoading(true);
     const result = await signIn("credentials", {
       redirect: false,
-      phone: values.phone,
-      code: values.code,
+      phoneNumber: values.phone,
+      veriCode: values.code,
     });
     if (result?.error) {
       if (result.error === "CredentialsSignin") {
@@ -111,6 +111,7 @@ const PhoneAuthForm = ({ className, ...props }: PhoneAuthFormProps) => {
           title: result.error || "登录失败",
         });
       }
+      setIsLoading(false);
     } else {
       toast({
         title: "登录成功!",

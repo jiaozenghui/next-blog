@@ -13,40 +13,95 @@ export const authOptions: AuthOptions = {
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
+        phoneNumber: {
+          label: "Phone Number",
+          type: "text",
+          placeholder: "+1 (555) 789012",
+        },
+        veriCode: {
+          label: "Verification Code",
+          type: "text",
+          placeholder: "123456",
+        },
+        type: {
+          label: "Type",
+          type: "text",
+        },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-        try {
-          const response = await fetch(
-            `${process.env.API_BASE_URL}/auth/login`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                username: credentials.email,
-                password: credentials.password,
-              }),
-            }
-          );
-          if (!response.ok) {
+        if (credentials?.type === "account") {
+          if (!credentials?.email || !credentials?.password) {
             return null;
           }
 
-          const data = await response.json();
-          if (data?.data?.token) {
-            return {
-              id: data.data.user.id.toString(),
-              name: data.data.user.username,
-              email: data.data.user.email,
-              token: data.data.token,
-              user: data.data.user,
-            };
+          try {
+            const response = await fetch(
+              `${process.env.API_BASE_URL}/auth/login`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  username: credentials.email,
+                  password: credentials.password,
+                }),
+              }
+            );
+            if (!response.ok) {
+              return null;
+            }
+
+            const data = await response.json();
+            if (data?.data?.token) {
+              return {
+                id: data?.data?.user?.id.toString(),
+                name: data?.data?.user?.username,
+                email: data?.data?.user?.email,
+                token: data.data.token,
+                user: data?.data?.user,
+              };
+            }
+            return null;
+          } catch (error) {
+            console.log(error);
+            return null;
           }
-          return null;
-        } catch (error) {
-          return null;
+        } else {
+          if (!credentials?.phoneNumber || !credentials?.veriCode) {
+            return null;
+          }
+
+          try {
+            const response = await fetch(
+              `${process.env.API_BASE_URL}/auth/loginByphone`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  phoneNumber: credentials.phoneNumber,
+                  veriCode: credentials.veriCode,
+                }),
+              }
+            );
+            if (!response.ok) {
+              return null;
+            }
+
+            const data = await response.json();
+            console.log(data);
+            if (data?.data) {
+              return {
+                id: data?.data?.user?.id?.toString(),
+                name: data?.data?.user?.username,
+                email: data?.data?.user?.email,
+                token: data.data,
+                user: data?.data?.user,
+              };
+            }
+            return null;
+          } catch (error) {
+            console.log(error);
+            return null;
+          }
         }
       },
     }),
@@ -55,14 +110,14 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }: any) {
+    async jwt({ token, user }) {
       if (user) {
         token.accessToken = user.token;
         token.user = user.user;
       }
       return token;
     },
-    async session({ session, token }: any) {
+    async session({ session, token }) {
       session.accessToken = token.accessToken;
       const response = await fetch(
         `${process.env.API_BASE_URL}/api/users/current`,

@@ -49,6 +49,7 @@ const EmailAuthForm = ({ className, ...props }: EmailAuthFormProps) => {
       redirect: false,
       email: values.email,
       password: values.password,
+      type: 'account'
     });
     if (result?.error) {
       if (result.error === "CredentialsSignin") {

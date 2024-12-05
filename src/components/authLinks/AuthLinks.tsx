@@ -18,7 +18,6 @@ const AuthLinks = () => {
   const router = useRouter()
   const { status, data: session } = useSession();
   const [needAuth, setNeedAuth] = useState(false)
-  console.log(status)
   useEffect(() => {
     setNeedAuth(isProtectRoute(pathname))
   }, [pathname])

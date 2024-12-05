@@ -9,6 +9,7 @@ interface prposType {
 const ArticleView: FC<prposType> = (props) => {
   return (
     <article
+      id="blog_artcle_content"
       className="overflow-x-auto text-wrap flex-1"
       suppressHydrationWarning={true}
       dangerouslySetInnerHTML={{ __html: props.content }}

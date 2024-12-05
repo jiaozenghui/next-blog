@@ -191,7 +191,7 @@ const ArticleEditor = (props: propsType) => {
   }
 
   return !isLoading ? (
-    <section className="mt-6 flex flex-col px-1">
+    <section className="mt-6 flex flex-col px-1  overflow-hidden">
       <h1 className="text-20 font-bold  ">Create Podcast</h1>
 
       <Form {...form}>

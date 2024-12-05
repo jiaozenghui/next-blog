@@ -25,6 +25,7 @@ export function HeaderActions({ articleId, userId }: CardProps) {
   const Delete = async () => {
     console.log('delete')
   }
+  console.log(session)
   return (
     <>
       {status === "authenticated"&& session?.user?._id === userId ? (

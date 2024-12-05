@@ -1,0 +1,40 @@
+.articleAnchor {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+
+  .articleAnchor li {
+    color: #333;
+    margin: 10px 0;
+    cursor: pointer;
+  }
+
+  .articleAnchor li:hover {
+    text-decoration: underline;
+  }
+
+  .articleAnchor li[data-type="H1"] {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .articleAnchor li[data-type="H2"] {
+    font-size: 16px;
+    padding-left: 15px;
+    font-weight: bold;
+  }
+
+  .articleAnchor li[data-type="H3"] {
+    font-size: 14px;
+    padding-left: 30px;
+  }
+
+  .articleAnchor li[data-type="H4"] {
+    font-size: 12px;
+    padding-left: 45px;
+  }
+
+  .articleAnchor li[data-type="H5"] {
+    font-size: 12px;
+    padding-left: 60px;
+  }

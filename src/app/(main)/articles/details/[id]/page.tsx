@@ -4,7 +4,7 @@ import ArticleView from "@/components/ArticleView";
 import Time from '@/components/Time'
 import Like from '@/components/Like'
 import Views from "@/components/Views";
-import { AnchorBar } from "@/components/AnchorBar";
+import { ArticleAnchor } from "@/components/ArticleAnchor";
 const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
   const articleId = (await params).id
 
@@ -27,7 +27,7 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
         <ArticleView content={data.content} />
       </div >
-      <AnchorBar />
+      <ArticleAnchor />
     </>
   )
 };

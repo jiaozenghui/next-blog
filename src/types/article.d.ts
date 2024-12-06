@@ -14,6 +14,7 @@ type articleListItemType = Pick<
   | "state"
   | 'category'
   | 'tags'
-  | 'user'
+  | 'user',
+  | 'anchors'
 >;
 export type { articleListItemType };

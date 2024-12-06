@@ -8,6 +8,13 @@ declare interface TagAttributes {
     indexes: number;
   }
   
+  declare interface Anchor {
+    id: string,
+    type: string,
+    text: string
+  }
+
+
   declare interface ArticleAttributes {
     id: number;
     title: string;
@@ -34,7 +41,8 @@ declare interface TagAttributes {
     theme_id: number;
     category: string;
     tags: string
-    user:string
+    user:string,
+    anchors: Anchor[]
   }
   declare interface UserAttributes {
     id: number;

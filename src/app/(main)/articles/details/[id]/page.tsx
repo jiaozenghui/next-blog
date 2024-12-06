@@ -15,7 +15,6 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
     data = r.data
   }
 
-
   return (
     <>
       <div className=" break-all flex-1 w-full   pb-5 shadow-sm px-2">
@@ -27,7 +26,7 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
         <ArticleView content={data.content} />
       </div >
-      <ArticleAnchor />
+      <ArticleAnchor  anchors={data.anchors}/>
     </>
   )
 };

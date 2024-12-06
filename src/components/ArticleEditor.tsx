@@ -40,6 +40,7 @@ import { Skeletons } from "@/components/Skeletons";
 import { articleListItemType } from "@/types/article";
 import { categoryList } from "@/constants";
 import { tagList } from "@/constants";
+import { formatHtml } from "@/lib/utils";
 // import W1Editor from "./WEditor";
 
 
@@ -155,14 +156,15 @@ const ArticleEditor = (props: propsType) => {
         setIsSubmitting(false);
         //throw new Error("Please generate image");
       }
-
+      const {html, anchors}= formatHtml(content)
       const postBody = {
         title: data.title,
         desc: data.desc,
         coverImg: imageUrl,
-        content: content,
+        content: html,
         category: data.category,
         tags: data.tags.join("|"),
+        anchors
       };
       const config = { needAuth: true }
       if (props.articleId) {

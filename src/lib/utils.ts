@@ -28,3 +28,46 @@ export function isProtectRoute(path:string):boolean {
   })
   return isProtected
 }
+
+export function formatHtml(content:string) {
+  const container = stringToHTML(content)
+  const findCondition = 'a[href^="#article_"]';
+  
+  const elementsArray = Array.prototype.slice.call(
+    container?.querySelectorAll(findCondition)
+  );
+  const anchors = elementsArray.map((ele: Element) => {
+    const anchor_id = ele.getAttribute("href")
+      ? ele.getAttribute("href")?.split("#article_")[1]
+      : "";
+    if (anchor_id) {
+      const anchorEle = document.createElement(`a`)
+      anchorEle.setAttribute('id', anchor_id)
+      anchorEle.setAttribute('href', `#${anchor_id}`)
+      anchorEle.style.cssText = `margin-top: -84px;
+      display: inline-block;
+      position: absolute;
+      width: 1px;`
+      ele.parentElement?.prepend(anchorEle)
+      //ele?.setAttribute("id", anchor_id);
+    }
+    ele.removeAttribute("target");
+
+
+    return {
+      type: ele.parentElement?.tagName,
+      text: ele.textContent,
+      id: anchor_id,
+    };
+  });
+  return {
+    html: container.innerHTML,
+    anchors
+  }
+}
+
+const  stringToHTML =  (str:string): HTMLElement=> {
+  const dom = document.createElement('div');
+  dom.innerHTML = str;
+  return dom;
+}

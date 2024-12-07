@@ -19,7 +19,7 @@ import { menuList } from "@/constants";
 export function MobileMenu() {
   return (
     <Sheet key='left'>
-      <SheetTrigger  className="md:hidden" asChild>
+      <SheetTrigger  className="lg:hidden" asChild>
         <Image
             src="/icons/hamburger.svg"
             width={30}

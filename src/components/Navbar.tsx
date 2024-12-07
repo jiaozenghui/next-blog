@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className="flex h-16 items-center justify-between  py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
           <div className="flex">
             <MobileMenu />
-            <Link href="/"  className="hidden   md:flex cursor-pointer items-center gap-1">
+            <Link href="/"  className="hidden   lg:flex cursor-pointer items-center gap-1">
               <Image src="/icons/logo.svg" alt="logo" width={23} height={27} />
               <h1 className="text-24 font-extrabold    ml-2">Jzh个人博客</h1>
             </Link>

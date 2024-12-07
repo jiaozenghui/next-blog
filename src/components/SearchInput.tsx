@@ -7,7 +7,7 @@ import { KeyboardEvent } from "react";
 export default function SearchInput() {
   const goToSearch = (event: KeyboardEvent) => {
     if (event.key === 'Enter')
-      redirect(`/articles/search/${(event.target as any).value}`)
+      redirect(`/articles/search/${(event.target as HTMLInputElement).value}`)
   };
   return (
     <div className="relative">

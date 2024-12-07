@@ -27,11 +27,9 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
-// import GeneratePodcast from "@/components/GeneratePodcast"
 import GenerateThumbnail from "@/components/GenerateThumbnail";
 import { Loader } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-// import { useMutation } from "convex/react"
 import { useRouter } from "next/navigation";
 import axios, { Post, Patch, FcResponse } from "@axios";
 
@@ -41,7 +39,6 @@ import { articleListItemType } from "@/types/article";
 import { categoryList } from "@/constants";
 import { tagList } from "@/constants";
 import { formatHtml } from "@/lib/utils";
-// import W1Editor from "./WEditor";
 
 
 const formSchema = z.object({
@@ -195,7 +192,6 @@ const ArticleEditor = (props: propsType) => {
   return !isLoading ? (
     <section className="mt-6 flex flex-col px-1  overflow-hidden">
       <h1 className="text-20 font-bold  ">Create Podcast</h1>
-
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -326,7 +322,7 @@ const ArticleEditor = (props: propsType) => {
               />
             </div>
           </div>
-          <div className="flex flex-col pt-10">
+          <div className="flex flex-col pt-10 gap-2.5">
             {/* <AIEditor
               placeholder="描述代码的作用，支持 Markdown 语法.."
               style={{ height: 220 }}

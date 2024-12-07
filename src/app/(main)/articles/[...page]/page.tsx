@@ -29,7 +29,7 @@ const ArticleList = async ({
   }
 
   if (ptype === "search") {
-    query = pageParams[1];
+    query = decodeURIComponent(pageParams[1]);
   }
   return (
     <section className="mt-3 flex w-full flex-col gap-3 ">

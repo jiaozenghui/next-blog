@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/sheet"
 import { SidebarNav } from "./SiderBar";
 
-import { sidebarLinks } from "@/constants";
+import { menuList } from "@/constants";
 
 export function MobileMenu() {
   return (
@@ -46,7 +46,7 @@ export function MobileMenu() {
           </SheetTitle>
         </SheetHeader>
         <div className="grid gap-4 py-4">
-          <SidebarNav items={sidebarLinks} />
+          <SidebarNav items={menuList} />
         </div>
       </SheetContent>
     </Sheet>

@@ -13,6 +13,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useSession } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
+import { redirect } from "next/navigation";
+import { Delete } from "@axios";
 
 interface CardProps extends React.ComponentProps<typeof Card> {
   articleId: number
@@ -22,8 +25,17 @@ interface CardProps extends React.ComponentProps<typeof Card> {
 export function HeaderActions({ articleId, userId }: CardProps) {
 
   const { status, data: session } = useSession();
-  const Delete = async () => {
-    console.log('delete')
+  const { toast } = useToast();
+  const config = { needAuth: true }
+  const DeleteArticle = async (e:React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    const [err,r] = await Delete(`/api/articles/delete/${articleId}`, config)
+    if (r && r.errno ===0) {
+      toast({
+        title: 'Deleted success',
+      });
+      redirect('/')
+    }
   }
   return (
     <>
@@ -39,7 +51,7 @@ export function HeaderActions({ articleId, userId }: CardProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>
-                  <span onClick={() => Delete()}>
+                  <span className="block w-full cursor-pointer" onClick={DeleteArticle}>
                     Delete
                   </span>
                 </DropdownMenuItem>

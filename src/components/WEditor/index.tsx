@@ -2,10 +2,10 @@ import "@wangeditor/editor/dist/css/style.css"; // 引入 css
 import styles from "./index.module.css";
 import React, { useState, useEffect } from "react";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
-import { IDomEditor, IEditorConfig, IToolbarConfig, SlateElement } from "@wangeditor/editor";
+import { IDomEditor, IEditorConfig, IToolbarConfig } from "@wangeditor/editor";
 
 import { WEditorProps } from "@/types";
-function WEditor({ content, setContent, setAnchors }: WEditorProps) {
+function WEditor({ content, setContent }: WEditorProps) {
   // editor 实例
   const [editor, setEditor] = useState<IDomEditor | null>(null); 
 

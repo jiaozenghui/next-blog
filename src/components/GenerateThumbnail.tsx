@@ -110,7 +110,7 @@ const GenerateThumbnail = ({
       </div> */}
       {isAiThumbnail ? (
         <div className="flex flex-col gap-5">
-          <div className="mt-5 flex flex-col gap-2.5">
+          <div className=" flex flex-col gap-2.5">
             <Label className="text-16 font-bold  ">
               AI Prompt to generate Thumbnail
             </Label>
@@ -123,7 +123,7 @@ const GenerateThumbnail = ({
             />
           </div>
           <div className="w-full max-w-[200px]">
-            <button
+            <Button
               type="submit"
               onClick={generateImage}
             >
@@ -135,7 +135,7 @@ const GenerateThumbnail = ({
               ) : (
                 "Generate"
               )}
-            </button>
+            </Button>
           </div>
         </div>
       ) : (

@@ -7,7 +7,7 @@ import { buttonVariants } from "@/components/ui/button"
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
-    route: string
+    id: string
     label: string
   }[]
 }
@@ -25,11 +25,11 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
     >
       {items.map((item) => (
         <Link
-          key={item.route}
-          href={item.route}
+          key={item.id}
+          href={item.id}
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            pathname === item.route
+            pathname === item.id
               ? "bg-muted hover:bg-muted"
               : "hover:bg-transparent hover:underline",
             "justify-start"

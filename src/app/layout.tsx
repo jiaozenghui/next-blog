@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/utils/auth";
-
 import { META_THEME_COLORS } from "@/config/site";
 
 const geistSans = localFont({

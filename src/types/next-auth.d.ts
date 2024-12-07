@@ -8,27 +8,22 @@ declare module "next-auth" {
       _id: string
       name: string
       email: string
-      phone: string
-      department_id: number
-      status: number
-      last_login: string
-      created_at: string
-      updated_at: string
-
+      phoneNumber: string
+      createdAt: string
+      updatedAt: string
     }
   }
 
   interface User {
     token: string
     user: {
-      _id:string,
-      username: string,
-      email: string,
-      type: string,
-      role: string,
-      createdAt: string,
-      updatedAt: string,
-      id: number
+      id:number
+      _id: string
+      name: string
+      email: string
+      phoneNumber: string
+      createdAt: string
+      updatedAt: string
     }
   }
 }
@@ -37,14 +32,13 @@ declare module "next-auth/jwt" {
   interface JWT {
     accessToken?: string
     user?: {
-      _id:string,
-      username: string,
-      email: string,
-      type: string,
-      role: string,
-      createdAt: string,
-      updatedAt: string,
-      id: number
+      id:number
+      _id: string
+      name: string
+      email: string
+      phoneNumber: string
+      createdAt: string
+      updatedAt: string
     }
   }
 }

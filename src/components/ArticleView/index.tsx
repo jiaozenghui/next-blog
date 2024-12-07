@@ -1,5 +1,3 @@
-// https://nextjs.org/docs/messages/react-hydration-error#solution-3-using-suppresshydrationwarning
-// 有script标签，防止水合报错
 import type { FC } from "react";
 import styles from "./index.module.css";
 

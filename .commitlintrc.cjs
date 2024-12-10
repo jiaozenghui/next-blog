@@ -19,7 +19,6 @@ module.exports= {
           "merge",     // 合并分支， 例如： merge（前端页面）： feature-xxxx修改线程地址
           "release"
         ]
-      ],
-      'subject-case': [0],
+      ]
     }
   }

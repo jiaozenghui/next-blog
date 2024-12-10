@@ -1,6 +1,6 @@
 {
   "name": "my-blog",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,9 +17,6 @@
   },
   "lint-staged": {
     "*.{js,tsx}": "eslint"
-  },
-  "release-it": {
-    "tagFormat": "v{{version}}"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^9.4.0",

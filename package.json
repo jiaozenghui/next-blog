@@ -13,7 +13,7 @@
     "commitlint": "commitlint --edit",
     "cz": "czg",
     "commit": "git add -A && czg && git push",
-    "release": "release-it --changelog"
+    "release": "release-it"
   },
   "lint-staged": {
     "*.{js,tsx}": "eslint"

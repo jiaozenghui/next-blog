@@ -1,9 +1,9 @@
 {
   "github": {
-    "release": true
+    "release": false
   },
   "git": {
-    "commitMessage": "release: v${version}"
+    "commitMessage": "feat: v${version}"
   },
   "npm": {
     "publish": true

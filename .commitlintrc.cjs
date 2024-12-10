@@ -1,4 +1,7 @@
+const fs = require('node:fs')
+const path = require('node:path')
 
+const packages = fs.readdirSync(path.resolve(__dirname, "src"), { withFileTypes: true }).filter(dirent => dirent.isDirectory());
 
 module.exports = {
   extends: ['@commitlint/config-conventional'],

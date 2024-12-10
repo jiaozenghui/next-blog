@@ -12,7 +12,7 @@
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "cz": "czg",
-    "commit": "git add -A && czg && git push",
+    "commit": "git add . && czg && git push",
     "release": "release-it"
   },
   "lint-staged": {

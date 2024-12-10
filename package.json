@@ -18,6 +18,9 @@
   "lint-staged": {
     "*.{js,tsx}": "eslint"
   },
+  "release-it": {
+    "tagFormat": "v{{version}}"
+  },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^9.4.0",
     "@hookform/resolvers": "^3.4.2",

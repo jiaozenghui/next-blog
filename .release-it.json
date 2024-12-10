@@ -3,7 +3,8 @@
     "release": false
   },
   "git": {
-    "commitMessage": "feat: v${version}"
+    "commitMessage": "feat: v${version}",
+    "tagName": "v${version}"
   },
   "npm": {
     "publish": true

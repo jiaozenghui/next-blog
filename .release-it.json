@@ -7,10 +7,10 @@
     "tagName": "v${version}"
   },
   "npm": {
-    "publish": true
+    "publish": false
   },
   "hooks": {
-    "after:bump": "echo 更新版本成功"
+    "after:bump": "echo 'Deleting local and remote tag...' && git tag -d v${version}"
   },
   "plugins": {
     "@release-it/conventional-changelog": {

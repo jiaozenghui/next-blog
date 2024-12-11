@@ -10,7 +10,7 @@
     "publish": false
   },
   "hooks": {
-    "after:bump": "echo 'Deleting local and remote tag...' && git tag -d v${version}"
+    "after:bump": "echo 'Deleting local and remote tag...' && git tag -d $(git tag -l)"
   },
   "plugins": {
     "@release-it/conventional-changelog": {

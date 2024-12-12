@@ -1,5 +1,12 @@
 
 
+## [1.0.22](https://github.com/jiaozenghui/next-blog/compare/v1.0.21...v1.0.22) (2024-12-12)
+
+
+### 🐛问题修复
+
+* 🐛 test ([0ec0b1a](https://github.com/jiaozenghui/next-blog/commit/0ec0b1a16630afe547c0fc310d594ac4126d69c8))
+
 ## [1.0.21](https://github.com/jiaozenghui/next-blog/compare/v1.0.20...v1.0.21) (2024-12-11)
 
 

@@ -3,6 +3,8 @@ services:
   next-blog:
     image: crpi-yacuoj1e11qkasck.cn-beijing.personal.cr.aliyuncs.com/jiaozenghui/next-blog:{{tag}}
     container_name: next-blog
+    networks:
+      - blog_bridge_network
     ports:
       - 8000:3000
     env_file:

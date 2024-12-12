@@ -1,5 +1,12 @@
 
 
+## [1.0.23](https://github.com/jiaozenghui/next-blog/compare/v1.0.22...v1.0.23) (2024-12-12)
+
+
+### ✨新功能
+
+* ✨ test ([bd521dd](https://github.com/jiaozenghui/next-blog/commit/bd521dd4c14d32cdee8bc84703136c14074aace7))
+
 ## [1.0.22](https://github.com/jiaozenghui/next-blog/compare/v1.0.21...v1.0.22) (2024-12-12)
 
 

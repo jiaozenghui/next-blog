@@ -73,41 +73,10 @@ const GenerateThumbnail = ({
         toast({ title: "Error generating thumbnail", variant: "destructive" });
         console.log(err);
       });
-
-    // try {
-    //   const response = await handleGenerateThumbnail({ prompt: imagePrompt });
-    //   const blob = new Blob([response as any], { type: 'image/png' });
-    //   handleImage(blob, `thumbnail-${uuidv4()}`);
-    // } catch (error) {
-    //   console.log(error)
-    //   toast({ title: 'Error generating thumbnail', variant: 'destructive' })
-    // }
   };
 
   return (
     <>
-      {/* <div className="generate_thumbnail">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => setIsAiThumbnail(true)}
-          className={cn("", {
-            "bg-black-6": isAiThumbnail,
-          })}
-        >
-          Use AI to generate thumbnail
-        </Button>
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => setIsAiThumbnail(false)}
-          className={cn("", {
-            "bg-black-6": !isAiThumbnail,
-          })}
-        >
-          Upload custom image
-        </Button>
-      </div> */}
       {isAiThumbnail ? (
         <div className="flex flex-col gap-5">
           <div className=" flex flex-col gap-2.5">

@@ -5,7 +5,7 @@ import { type ListData } from "axios";
 import { articleListItemType } from "@/types/article";
 
 const PopularCard = async () => {
-  const [err, data] = await Get<ListData<articleListItemType>>(
+  const {r:data}= await Get<ListData<articleListItemType>>(
     "/api/articles/list",
     { SortKey: 'likeCount',customSort: 'dsc', pageIndex: 0, pageSize: 6 }
   );

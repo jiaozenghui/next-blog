@@ -1,7 +1,5 @@
 
 'use client'
-import { usePathname, useSearchParams } from 'next/navigation'
- 
 import {
   PaginationContent,
   PaginationEllipsis,
@@ -21,17 +19,13 @@ interface PaginationProps {
 }
  
 export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
-  //防止出入字符串
   pageSize = Number(pageSize)
-  const pathname = usePathname()
-  //const searchParams = useSearchParams()
-  // const page = Number(searchParams.get('page')) || 1
  
   const renderPagination = () => {
     let dotBefore = false
     let dotAfter = false
  
-    const renderDotBefore = (index: number) => {
+    const renderDotBefore = () => {
       if (!dotBefore) {
         dotBefore = true
         return (
@@ -42,7 +36,7 @@ export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
       }
     }
  
-    const renderDotAfter = (index: number) => {
+    const renderDotAfter = () => {
       if (!dotAfter) {
         dotAfter = true
         return (
@@ -58,15 +52,15 @@ export default function Pagination({ pageSize, page = 3 }: PaginationProps) {
       .map((_, index) => {
         const pageNumber = index + 1
         if (page <= RANGE * 2 + 1 && pageNumber > page + RANGE && pageNumber < pageSize - RANGE + 1) {
-          return renderDotAfter(index)
+          return renderDotAfter()
         } else if (page > RANGE * 2 + 1 && page < pageSize - RANGE * 2) {
           if (pageNumber < page - RANGE && pageNumber > RANGE) {
-            return renderDotBefore(index)
+            return renderDotBefore()
           } else if (pageNumber > page + RANGE && pageNumber < pageSize - RANGE + 1) {
-            return renderDotAfter(index)
+            return renderDotAfter()
           }
         } else if (page >= pageSize - RANGE * 2 && pageNumber > RANGE && pageNumber < page - RANGE) {
-          return renderDotBefore(index)
+          return renderDotBefore()
         }
  
         return (

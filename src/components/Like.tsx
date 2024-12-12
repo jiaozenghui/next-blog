@@ -2,7 +2,6 @@
 import { Patch } from "@axios";
 import { Star } from "lucide-react";
 import { articleListItemType } from "@/types/article";
-import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -16,12 +15,11 @@ export default function Like({
   likeCount = 0,
   ...props
 }: LikeProps) {
-  const { data: session } = useSession();
   const [likesCount, setLikeCount] = useState(likeCount);
 
 
   const updateLikeCount = async () => {
-    const [e, r] = await Patch<articleListItemType>(
+    const {r} = await Patch<articleListItemType>(
       `/api/articles/change/likeCount/${articleId}`,
       {}
     );

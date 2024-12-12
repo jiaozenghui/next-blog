@@ -16,3 +16,10 @@ type articleListItemType = Pick<
   | 'anchors'
 >;
 export type { articleListItemType };
+
+declare interface GenerateThumbnailProps {
+  setImage: Dispatch<SetStateAction<string>>;
+  image: string;
+  imagePrompt: string;
+  setImagePrompt: Dispatch<SetStateAction<string>>;
+}

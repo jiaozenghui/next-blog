@@ -1,7 +1,6 @@
 import { InternalAxiosRequestConfig } from "axios";
 import { getSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
-import { redirect } from "next/navigation";
 type ICustomAxiosConfig = InternalAxiosRequestConfig & { needAuth?: boolean };
 export const handleConfigureAuth = async (config: ICustomAxiosConfig) => {
   if (typeof window !== "undefined" && config.needAuth) {

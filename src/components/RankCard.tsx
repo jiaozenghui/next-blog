@@ -11,7 +11,7 @@ interface cardProps {
   className?: string
 }
 const RankCard = async ({title, type, sort, className}: cardProps) => {
-  const [err, data] = await Get<ListData<articleListItemType>>(
+  const {r:data} = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
     { SortKey: type, customSort: sort, pageIndex: 0, pageSize: 6 }
   );

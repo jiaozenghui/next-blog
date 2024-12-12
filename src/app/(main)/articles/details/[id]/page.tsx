@@ -8,7 +8,7 @@ import { ArticleAnchor } from "@/components/ArticleAnchor";
 const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
   const articleId = (await params).id
 
-  const [e, r] = await Get<articleListItemType>(`/api/articles/${articleId}?update=view`)
+  const {r} = await Get<articleListItemType>(`/api/articles/${articleId}?update=view`)
 
   let data = {} as articleListItemType;
   if (r && r.errno === 0) {

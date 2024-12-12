@@ -1,36 +1,34 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
-import type { DependencyList, Dispatch, SetStateAction } from "react";
-import { AxiosError } from "axios";
-import { useToast } from "@/components/ui/use-toast"
+import { useEffect, useRef, useState } from 'react'
+import type { DependencyList, Dispatch, SetStateAction } from 'react'
+import { AxiosError } from 'axios'
 
 type FetchResult<T, J> = {
-  data: T | null;
-  setData: Dispatch<SetStateAction<T | null>>;
-  error: AxiosError<T> | null;
-  isLoading: boolean;
-  refetch: (params?: J) => void;
-};
+  data: T | null
+  setData: Dispatch<SetStateAction<T | null>>
+  error: AxiosError<T> | null
+  isLoading: boolean
+  refetch: (params?: J) => void
+}
 
 interface optionType {
   isUnSend?: boolean
   /** 是否手动请求*/
-  manual?: true;
+  manual?: true
   /** 依赖数组，触发自动更新*/
-  deps?: DependencyList;
+  deps?: DependencyList
   /** 缓存Key*/
-  key?: string;
+  key?: string
 }
 
-const cache: { [key: string]: () => Promise<any> } = {};
+const cache: { [key: string]: () => Promise<any> } = {}
 
 export const refetchKey = (key: string) => {
-  if (cache[key]) cache[key]();
-};
+  if (cache[key]) cache[key]()
+}
 
-export const handleNetworkError = (toast:any, errStatus?: number): void => {
-  
+export const handleNetworkError = (toast: any, errStatus?: number): void => {
   const networkErrMap: any = {
     '400': '错误的请求', // token 失效
     '401': '未授权，请重新登录',
@@ -58,7 +56,7 @@ export const handleNetworkError = (toast:any, errStatus?: number): void => {
   })
 }
 
-export const handleAuthError = (toast:any,errno: string): boolean => {
+export const handleAuthError = (toast: any, errno: string): boolean => {
   const authErrMap: any = {
     101004: '登录失效，需要重新登录', // token 失效
     '10032': '您太久没登录，请重新登录~', // token 过期
@@ -82,7 +80,7 @@ export const handleAuthError = (toast:any,errno: string): boolean => {
   return true
 }
 
-export const handleGeneralError = (toast:any, errno: number, errmsg: string): boolean => {
+export const handleGeneralError = (toast: any, errno: number, errmsg: string): boolean => {
   if (errno !== 0) {
     toast({
       title: '错误',
@@ -94,61 +92,55 @@ export const handleGeneralError = (toast:any, errno: number, errmsg: string): bo
   return true
 }
 
-
-
-
 export default function useFetch<T, J>(
   request: (param: J) => Promise<T>,
-  option: optionType = { deps: [] },
+  option: optionType = { deps: [] }
 ): FetchResult<T, J> {
-
-  const { toast } = useToast()
-  const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState<AxiosError<T> | null>(null);
-  const [isLoading, setIsLoading] = useState(!option.manual);
+  const [data, setData] = useState<T | null>(null)
+  const [error, setError] = useState<AxiosError<T> | null>(null)
+  const [isLoading, setIsLoading] = useState(!option.manual)
 
   const fetchData = async (param?: J) => {
-    setIsLoading(true);
+    setIsLoading(true)
 
     try {
       if (!option.isUnSend) {
-        const response = await request(param!);
-        setData(response);
+        const response = await request(param!)
+        setData(response)
       }
-
     } catch (error) {
-      setError(error as AxiosError<T>);
+      setError(error as AxiosError<T>)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   if (option.key) {
-    cache[option.key] = fetchData;
+    cache[option.key] = fetchData
   }
 
   // 如果是自动的就等自动执行完，在允许deps
-  const allowFetch = useRef(option.manual);
+  const allowFetch = useRef(option.manual)
   useEffect(() => {
     if (option.deps?.length && allowFetch.current) {
-      fetchData();
+      fetchData()
     }
-  }, option.deps);
+  }, option.deps)
 
   useEffect(() => {
     if (!option.manual) {
-      fetchData();
+      fetchData()
       setTimeout(() => {
-        allowFetch.current = true;
-      }, 0);
+        allowFetch.current = true
+      }, 0)
     }
-  }, []);
+  }, [])
 
   return {
     data,
     error,
     isLoading,
     setData,
-    refetch: fetchData,
-  };
+    refetch: fetchData
+  }
 }

@@ -16,7 +16,7 @@ import { isProtectRoute } from "@/lib/utils";
 const AuthLinks = () => {
   const pathname = usePathname();
   const router = useRouter()
-  const { status, data: session } = useSession();
+  const { data: session } = useSession();
   const [needAuth, setNeedAuth] = useState(false)
   useEffect(() => {
     setNeedAuth(isProtectRoute(pathname))

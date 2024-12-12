@@ -16,3 +16,10 @@ export interface Anchor {
 }
 
 
+export interface GenerateThumbnailProps {
+  setImage: Dispatch<SetStateAction<string>>;
+  image: string;
+  imagePrompt: string;
+  setImagePrompt: Dispatch<SetStateAction<string>>;
+}
+

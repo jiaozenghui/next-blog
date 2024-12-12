@@ -5,7 +5,6 @@ import { articleListItemType } from "@/types/article";
 import { cn } from "@/lib/utils";
 import { Get } from "@axios";
 import { type ListData } from "axios";
-import { redirect } from 'next/navigation'
 
 interface pageProps {
   type?: string
@@ -16,7 +15,7 @@ interface pageProps {
 }
 
 const CardList = async ({ type = 'all', page = 1, pageSize = 2, query = '', tags = '' }: pageProps) => {
-  const [err, data] = await Get<ListData<articleListItemType>>(
+  const {r:data} = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
     { pageIndex: page - 1, pageSize, ...((type === 'all' || type === 'search') ? {} : { category: type }), query, tags }
   );

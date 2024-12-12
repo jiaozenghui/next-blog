@@ -130,7 +130,8 @@ export const authOptions: AuthOptions = {
       );
       const data = await response.json();
       if (!response.ok || data.errno !== 0) {
-        session = null;
+        session.accessToken = null;
+        session.user = null
         //throw new Error(`Can't find the user`);
       } else {
         session.user = data.data;

@@ -1,8 +1,8 @@
-
-import NextAuth from "next-auth";
+/* eslint-disable */
+import  NextAuth from "next-auth";
 declare module "next-auth" {
   interface Session {
-    accessToken?: string
+    accessToken: string | null
     user: {
       id:number
       _id: string
@@ -11,7 +11,7 @@ declare module "next-auth" {
       phoneNumber: string
       createdAt: string
       updatedAt: string
-    }
+    } | null
   }
 
   interface User {

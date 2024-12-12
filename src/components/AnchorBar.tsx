@@ -5,10 +5,6 @@ import { useMemo, useEffect, useState } from "react"
 import { TreeOfContents } from "@/types/ui"
 import Tree from "./ui/tree"
 
-interface TocProps {
-    toc: TreeOfContents
-}
-
 const items = [
     {
         title: "Getting Started",

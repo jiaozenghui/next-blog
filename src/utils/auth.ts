@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { getServerSession, AuthOptions } from "next-auth";
 
 export const authOptions: AuthOptions = {
+  secret: process.env.SECRET || 'my-next-blog-key',
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,

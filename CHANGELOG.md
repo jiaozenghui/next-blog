@@ -1,5 +1,7 @@
 
 
+## [1.1.5](https://github.com/jiaozenghui/next-blog/compare/v1.1.4...v1.1.5) (2024-12-13)
+
 ## [1.1.4](https://github.com/jiaozenghui/next-blog/compare/v1.1.3...v1.1.4) (2024-12-13)
 
 

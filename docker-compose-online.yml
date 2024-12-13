@@ -11,5 +11,5 @@ services:
       - .env
 networks:
   blog_net:
-    name: blog_bridge_network
+    name: mynet
     external: true

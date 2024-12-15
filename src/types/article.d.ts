@@ -1,25 +1,9 @@
 /** 文章列表，单个文章主要的字段类型*/
-type articleListItemType = Pick<
-  ArticleAttributes,
-  | "id"
-  | "title"
-  | "desc"
-  | "viewCount"
-  | "coverImg"
-  | "createdAt"
-  | "likeCount"
-  | "content"
-  | "state"
-  | 'category'
-  | 'tags'
-  | 'user',
-  | 'anchors'
->;
-export type { articleListItemType };
+declare type articleListItemType = Omit<ArticleAttributes, 'content'>
 
-declare interface GenerateThumbnailProps {
-  setImage: Dispatch<SetStateAction<string>>;
-  image: string;
-  imagePrompt: string;
-  setImagePrompt: Dispatch<SetStateAction<string>>;
+declare interface nextAndPrevProps {
+  prev?: {id: number, title: string},
+  next?: {id: number, title: string}
 }
+
+declare type articleDetails = ArticleAttributes & nextAndPrevProps

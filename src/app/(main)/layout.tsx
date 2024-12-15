@@ -15,7 +15,7 @@ export default function RootLayout({
         <div className="relative flex flex-col">
           <main className="relative flex">
             <RightSidebar />
-            <section className="flex min-h-screen flex-1 w-full">
+            <section className="flex min-h-screen flex-1 w-0">
               <div className="mx-auto flex w-full  ">
                 <Toaster />
                 {children}

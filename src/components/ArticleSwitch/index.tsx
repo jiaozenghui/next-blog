@@ -2,12 +2,8 @@ import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-interface PagerProps {
-  prev: {id: number, title: string},
-  next: {id: number, title: string}
-}
 
-export function ArticleSwitch({ prev, next }: PagerProps) {
+export function ArticleSwitch({ prev, next }: nextAndPrevProps) {
   return (
     <div className="flex flex-row items-center justify-between">
       {prev && (

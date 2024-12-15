@@ -5,12 +5,14 @@ import Time from '@/components/Time'
 import Like from '@/components/Like'
 import Views from "@/components/Views";
 import { ArticleAnchor } from "@/components/ArticleAnchor";
+import { ArticleSwitch } from "@/components/ArticleSwitch";
+
+
 const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
   const articleId = (await params).id
 
   const {r} = await Get<articleListItemType>(`/api/articles/${articleId}?update=view`)
-
-  let data = {} as articleListItemType;
+  let data:articleListItemType;
   if (r && r.errno === 0) {
     data = r.data
   }
@@ -25,6 +27,7 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
           <Views className="ml-3" viewCount={data.viewCount} />
         </div>
         <ArticleView content={data.content} />
+        <ArticleSwitch next={data.next} prev={data.prev} />
       </div >
       <ArticleAnchor  anchors={data.anchors}/>
     </>

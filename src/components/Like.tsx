@@ -1,7 +1,6 @@
 "use client";
 import { Patch } from "@axios";
 import { Star } from "lucide-react";
-import { articleListItemType } from "@/types/article";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 

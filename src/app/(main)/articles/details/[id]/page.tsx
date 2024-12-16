@@ -1,23 +1,46 @@
 import { Get } from '@axios'
-import ArticleView from "@/components/ArticleView";
+import type { Metadata } from 'next'
+import ArticleView from '@/components/ArticleView'
 import Time from '@/components/Time'
 import Like from '@/components/Like'
-import Views from "@/components/Views";
-import { ArticleAnchor } from "@/components/ArticleAnchor";
-import { ArticleSwitch } from "@/components/ArticleSwitch";
+import Views from '@/components/Views'
+import { ArticleAnchor } from '@/components/ArticleAnchor'
+import { ArticleSwitch } from '@/components/ArticleSwitch'
+
+type Props = {
+  params: Promise<{ id: string }>
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+}
 
 
-const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
+export async function generateMetadata(
+  { params }: Props,
+): Promise<Metadata> {
   const articleId = (await params).id
 
-  const {r} = await Get<articleDetails>(`/api/articles/${articleId}?update=view`)
-  let data:articleDetails | null = null;
+  const { r } = await Get<articleDetails>(`/api/articles/${articleId}?update=view`)
+  let data: articleDetails | null = null
   if (r && r.errno === 0) {
     data = r.data
   }
-  return (
-    !data?
-    <div className="flex justify-center w-full  pt-[50px]">暂未找到相关文章</div>:
+  return {
+    title: data?.title,
+    description: data?.desc
+  }
+}
+
+const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const articleId = (await params).id
+ 
+  const { r } = await Get<articleDetails>(`/api/articles/${articleId}?update=view`)
+  let data: articleDetails | null = null
+  if (r && r.errno === 0) {
+    data = r.data
+  }
+
+  return !data ? (
+    <div className="flex justify-center w-full  pt-[50px]">暂未找到相关文章</div>
+  ) : (
     <>
       <div className=" break-all flex-1 w-full   pb-5 shadow-sm px-2 overflow-hidden">
         <h1 className="text-4xl my-3 font-semibold">{data.title}</h1>
@@ -28,10 +51,10 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
         <ArticleView content={data.content} />
         <ArticleSwitch next={data.next} prev={data.prev} />
-      </div >
-      <ArticleAnchor  anchors={data.anchors}/>
+      </div>
+      <ArticleAnchor anchors={data.anchors} />
     </>
   )
-};
+}
 
-export default ArticleInfo;
+export default ArticleInfo

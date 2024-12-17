@@ -1,5 +1,20 @@
 
 
+## [1.2.0](https://github.com/jiaozenghui/next-blog/compare/v1.1.7...v1.2.0) (2024-12-17)
+
+
+### ✨新功能
+
+* ✨ about me module ([aa473d3](https://github.com/jiaozenghui/next-blog/commit/aa473d3442623f25877d0e632be690a6b2764200))
+* ✨ test ([7453123](https://github.com/jiaozenghui/next-blog/commit/74531232e52478dcfaad5f2c69cdbe00f1432d3f))
+* ✨ test ([9cbaafc](https://github.com/jiaozenghui/next-blog/commit/9cbaafcfcdcff9155ab865804b7b8aa99150737d))
+
+
+### 🐛问题修复
+
+* commit lint ([3670c58](https://github.com/jiaozenghui/next-blog/commit/3670c585269b11db13d3f45be21baa450fdb98d3))
+* commit lint ([2b345e8](https://github.com/jiaozenghui/next-blog/commit/2b345e8bce43188a322b2c47f794ce5cda2d7c60))
+
 ## [1.1.7](https://github.com/jiaozenghui/next-blog/compare/v1.1.6...v1.1.7) (2024-12-15)
 
 

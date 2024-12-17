@@ -35,7 +35,6 @@ import axios, { Post, Patch, FcResponse } from '@axios'
 
 import useFetch from '@/common/hooks/useFetch'
 import { Skeletons } from '@/components/Skeletons'
-import { articleListItemType } from '@/types/article'
 import { categoryList } from '@/constants'
 import { tagList } from '@/constants'
 import { formatHtml } from '@/lib/utils'

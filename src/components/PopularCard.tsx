@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Get } from "@axios";
 import { type ListData } from "axios";
-import { articleListItemType } from "@/types/article";
 
 const PopularCard = async () => {
   const {r:data}= await Get<ListData<articleListItemType>>(

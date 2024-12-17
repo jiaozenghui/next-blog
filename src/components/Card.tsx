@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Circle } from "lucide-react";
 import Link from "next/link";
 import { HeaderActions } from "./HeaderActions";
-import { articleListItemType } from "@/types/article";
 import Like from "./Like";
 import Time from "./Time";
 const Card = ({ item }: { item: articleListItemType; key: string }) => {

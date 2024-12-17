@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "./Card";
 import Pagination from "./Pagination";
-import { articleListItemType } from "@/types/article";
 import { cn } from "@/lib/utils";
 import { Get } from "@axios";
 import { type ListData } from "axios";
@@ -14,7 +13,7 @@ interface pageProps {
   tags?: string | null
 }
 
-const CardList = async ({ type = 'all', page = 1, pageSize = 2, query = '', tags = '' }: pageProps) => {
+const CardList = async ({ type = 'all', page = 1, pageSize = 10, query = '', tags = '' }: pageProps) => {
   const {r:data} = await Get<ListData<articleListItemType>>(
     "/api/articles/list",
     { pageIndex: page - 1, pageSize, ...((type === 'all' || type === 'search') ? {} : { category: type }), query, tags }

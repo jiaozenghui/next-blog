@@ -40,7 +40,7 @@ export function HeaderMenu() {
                 </NavigationMenuContent>
               </>
             ) : (
-              <Link href={`/articles/${item.id}`} legacyBehavior passHref>
+              <Link href={item.external ? `${item.id}` : `/articles/${item.id}`} legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   {item.label}
                 </NavigationMenuLink>
@@ -48,6 +48,7 @@ export function HeaderMenu() {
             )}
           </NavigationMenuItem>
         ))}
+
       </NavigationMenuList>
     </NavigationMenu>
   );

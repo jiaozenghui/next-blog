@@ -4,12 +4,10 @@ import { usePathname } from "next/navigation"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { menuProps } from "@/constants";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
-  items: {
-    id: string
-    label: string
-  }[]
+  items: menuProps[]
 }
 
 export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
@@ -26,7 +24,8 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
       {items.map((item) => (
         <Link
           key={item.id}
-          href={item.id}
+
+          href={item.external ? `${item.id}` : `/articles/${item.id}`}
           className={cn(
             buttonVariants({ variant: "ghost" }),
             pathname === item.id

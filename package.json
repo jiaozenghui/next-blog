@@ -16,7 +16,7 @@
     "release": "release-it"
   },
   "lint-staged": {
-    "*.{js,tsx}": "eslint"
+    "*.{tsx}": "eslint"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^9.4.0",

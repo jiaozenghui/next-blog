@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import styles from "./authLinks.module.css";
 import { signOut, useSession } from "next-auth/react";
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -36,11 +35,11 @@ const AuthLinks = () => {
     <>
       {session && session?.user ? (
         <>
-          <Link href="/articles/editor" className={styles.link}>
-            Write
+          <Link href="/articles/editor" className='header_links'>
+            创作文章
           </Link>
-          <span className={styles.link} onClick={() => Logout()}>
-            Logout
+          <span className='header_links' onClick={() => Logout()}>
+            退出
           </span>
 
           <DropdownMenu>
@@ -49,21 +48,21 @@ const AuthLinks = () => {
                 <User className="h-[1.2rem] w-[1.2rem] scale-100 transition-all " />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent className='header_links' align="end">
               <DropdownMenuItem>
-                <Link href="/docs" legacyBehavior passHref>
-                  Write
+                <Link  href="/docs" legacyBehavior passHref>
+                创作文章
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => Logout()}>
-                LogOut
+                退出
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </>
       ) : (
-        <Link href="/login" className={styles.link}>
-          Login
+        <Link href="/login" className='header_links'>
+          登录
         </Link>
       )}
     </>

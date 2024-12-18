@@ -10,7 +10,7 @@ export function PopularTags({ className, ...props }: CardProps) {
   return (
     <Card className={cn(className)} {...props}>
       <CardHeader className="card_title">
-        <CardTitle className="text-lg">Popular Tags</CardTitle>
+        <CardTitle className="text-lg">热门标签</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-3 gap-3 mt-2">

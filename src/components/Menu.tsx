@@ -23,13 +23,14 @@ export function HeaderMenu() {
           <NavigationMenuItem key={item.id}>
             {item.children ? (
               <>
-                <Link href={`/articles/${item.id}`} legacyBehavior passHref>
-                  <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                <Link  href={`/articles/${item.id}`} legacyBehavior passHref>
+                  <NavigationMenuTrigger className="header_links">{item.label}</NavigationMenuTrigger>
                 </Link>
                 <NavigationMenuContent>
                   <ul className="grid  gap-3 p-4  md:grid-cols-3 w-[300px] ">
                     {item.children.map((tag: tagProps) => (
                       <ListItem
+                      className="header_links"
                         key={tag.id}
                         title={tag.label}
                         href={`/articles/${item.id}/${tag.id}`}
@@ -41,7 +42,7 @@ export function HeaderMenu() {
               </>
             ) : (
               <Link href={item.external ? `${item.id}` : `/articles/${item.id}`} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'header_links')}>
                   {item.label}
                 </NavigationMenuLink>
               </Link>

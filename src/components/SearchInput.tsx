@@ -11,8 +11,8 @@ export default function SearchInput() {
   };
   return (
     <div className="relative">
-      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-      <Input onKeyDown={(event) => goToSearch(event)} placeholder="Search" className="pl-8" />
+      <Search className="absolute left-2 top-2 h-4 w-4 text-muted-foreground" />
+      <Input onKeyDown={(event) => goToSearch(event)} placeholder="搜索" className="pl-8 h-8 py-0 header_links" />
     </div>
   );
 }

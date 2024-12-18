@@ -15,7 +15,7 @@ const Navbar = () => {
           <div className="flex">
             <MobileMenu />
             <Link href="/" className="hidden   lg:flex cursor-pointer items-center gap-1">
-              <Image src="/icons/logo.png" alt="logo" width={23} height={27} />
+              <Image src="/icons/logo.png" alt="logo" width={30} height={30} />
               <h1 className="text-24 font-extrabold    ml-2">Jzh个人博客</h1>
             </Link>
             <HeaderMenu />

@@ -6,13 +6,13 @@ export interface menuProps {
 }
 
 export const menuConfs = {
-  search: 'Search',
-  all: 'Latest published articles',
-  personal: 'About me',
-  chart: 'Charts',
-  screen: 'Big Screen',
-  technology: 'Technology',
-  life: 'Life'
+  search: '搜索',
+  all: '最新发布',
+  personal: '关于我',
+  chart: '图表',
+  screen: '大屏',
+  technology: 'IT技术',
+  life: '生活'
 } as const
 
 export type pTypes = keyof typeof menuConfs
@@ -22,23 +22,6 @@ export interface tagProps {
   label: string
 }
 
-export const sidebarLinks = [
-  {
-    imgURL: '/icons/home.svg',
-    route: '/',
-    label: 'Home'
-  },
-  {
-    imgURL: '/icons/discover.svg',
-    route: '/discover',
-    label: 'Discover'
-  },
-  {
-    imgURL: '/icons/microphone.svg',
-    route: '/create-podcast',
-    label: 'Create Podcast'
-  }
-]
 
 export const tagList = [
   {
@@ -74,44 +57,44 @@ export const tagList = [
 export const categoryList = [
   {
     id: 'life',
-    label: 'Life'
+    label: '生活'
   },
   {
     id: 'technology',
-    label: 'Technology',
+    label: 'IT技术',
     children: tagList
   },
   {
     id: 'screen',
-    label: 'Big Screen'
+    label: '大屏'
   },
   {
     id: 'chart',
-    label: 'Charts'
+    label: '图表'
   }
 ]
 
 export const menuList: menuProps[] = [
   {
     id: 'life',
-    label: 'Life'
+    label: '生活'
   },
   {
     id: 'technology',
-    label: 'Technology',
+    label: 'IT技术',
     children: tagList
   },
   {
     id: 'screen',
-    label: 'Big Screen'
+    label: '大屏'
   },
   {
     id: 'chart',
-    label: 'Charts'
+    label: '图表'
   },
   {
     id: '/about/index.html',
-    label: 'About me',
+    label: '关于我',
     external: true
   }
 ]

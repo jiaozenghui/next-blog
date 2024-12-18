@@ -3,14 +3,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
-import { cn } from '@/lib/utils'
 import { Icons } from '@/components/ui/icons'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { z } from 'zod'
-import { Card, CardContent } from '@/components/ui/card'
 import { Post } from '@/plugins/axios'
 import { userMessageConfs } from '@/constants'
 import {
@@ -22,9 +20,7 @@ import {
   FormMessage
 } from '@/components/ui/form'
 
-type PhoneAuthFormProps = React.HTMLAttributes<HTMLDivElement>
-
-const PhoneAuthForm = ({ className, ...props }: PhoneAuthFormProps) => {
+const PhoneAuthForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isSending, setIsSending] = useState(false)
   const [timer, setTimer] = useState(60)
@@ -120,73 +116,69 @@ const PhoneAuthForm = ({ className, ...props }: PhoneAuthFormProps) => {
   }
 
   return (
-    <Card className={cn('w-full', className)} {...props}>
-      <CardContent className="p-6 pt-0 grid gap-4 mt-6">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid gap-4">
-              <div className="grid ">
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col gap-0">
-                      <FormLabel className="text-16 font-bold  ">Phone</FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={isLoading}
-                          className="input-class focus-visible:ring-offset-orange-1"
-                          placeholder="phone number"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className=" " />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="relative">
-                <FormField
-                  control={form.control}
-                  name="code"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col gap-0">
-                      <FormLabel className="text-16 font-bold  ">Code</FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={isLoading}
-                          className="input-class focus-visible:ring-offset-orange-1"
-                          placeholder="code"
-                          required
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className=" " />
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  className="absolute top-[22px] right-0"
-                  disabled={
-                    codeDisabled ||
-                    form.getFieldState('phone').invalid ||
-                    form.getValues('phone') === ''
-                  }
-                  onClick={handleSendCode}
-                >
-                  {isSending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-                  {timer === 60 ? '获取验证码' : `${timer}秒后重发`}
-                </Button>
-              </div>
-              <Button className="mt-2" disabled={isLoading}>
-                {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-                Sign In
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="grid gap-4">
+          <div className="grid ">
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-0">
+                  <FormLabel className="text-16 font-bold  ">手机号</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isLoading}
+                      className="input-class focus-visible:ring-offset-orange-1"
+                      placeholder="请输入"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className=" " />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="relative">
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-0">
+                  <FormLabel className="text-16 font-bold  ">验证码</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isLoading}
+                      className="input-class focus-visible:ring-offset-orange-1"
+                      placeholder="请输入"
+                      required
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className=" " />
+                </FormItem>
+              )}
+            />
+            <Button
+              className="absolute top-[22px] right-0"
+              disabled={
+                codeDisabled ||
+                form.getFieldState('phone').invalid ||
+                form.getValues('phone') === ''
+              }
+              onClick={handleSendCode}
+            >
+              {isSending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+              {timer === 60 ? '获取验证码' : `${timer}秒后重发`}
+            </Button>
+          </div>
+          <Button className="mt-2" disabled={isLoading}>
+            {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+            登录
+          </Button>
+        </div>
+      </form>
+    </Form>
   )
 }
 

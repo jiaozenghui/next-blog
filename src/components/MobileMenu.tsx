@@ -32,8 +32,8 @@ export function MobileMenu() {
               <Image
                 src="/icons/logo.png"
                 alt="logo"
-                width={23}
-                height={27}
+                width={30}
+                height={30}
               />
               <h1 className="text-24 font-extrabold    ml-2">Jzh个人博客</h1>
             </Link>

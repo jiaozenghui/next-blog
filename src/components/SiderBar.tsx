@@ -27,10 +27,11 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
 
           href={item.external ? `${item.id}` : `/articles/${item.id}`}
           className={cn(
+            'header_links',
             buttonVariants({ variant: "ghost" }),
             pathname === item.id
               ? "bg-muted hover:bg-muted"
-              : "hover:bg-transparent hover:underline",
+              : "hover:bg-transparent ",
             "justify-start"
           )}
         >

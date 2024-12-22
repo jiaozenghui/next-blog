@@ -2650,4 +2650,6 @@ display: none;
     position: absolute;
     top: 13px;
   }
-
+.home-first {
+  background-image: url(./../image/banner-ChVQlsE8.jpg);
+}

@@ -6,6 +6,7 @@ import Like from "./Like";
 import Time from "./Time";
 import { menuConfs, pTypes } from "@/constants";
 const Card = ({ item }: { item: articleListItemType; key: string }) => {
+  console.log(item)
   return (
     <div
       className=" mx-auto mt-3 relative cursor-pointer overflow-hidden w-full
@@ -37,7 +38,7 @@ const Card = ({ item }: { item: articleListItemType; key: string }) => {
           {menuConfs[item.category as pTypes]}
         </div>
         <Like articleId={item.id} likeCount={item.likeCount} />
-        <Time time={item.latestPublishAt} />
+        <Time time={item.createdAt} />
       </div>
     </div>
   );

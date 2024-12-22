@@ -28,7 +28,8 @@ declare interface TagAttributes {
     category: string;
     tags: string
     user:UserAttributes,
-    anchors: Anchor[]
+    anchors: Anchor[],
+    createdAt: string
   }
   declare interface UserAttributes {
     id:number

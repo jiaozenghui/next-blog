@@ -1,5 +1,12 @@
 
 
+## [1.2.2](https://github.com/jiaozenghui/next-blog/compare/v1.2.1...v1.2.2) (2024-12-22)
+
+
+### 🐛问题修复
+
+* v2 version ([36c07ad](https://github.com/jiaozenghui/next-blog/commit/36c07adb4879ee9b02f5f466b822df6a6eb4a2e3))
+
 ## [1.2.1](https://github.com/jiaozenghui/next-blog/compare/v1.2.0...v1.2.1) (2024-12-18)
 
 

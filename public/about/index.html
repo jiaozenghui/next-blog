@@ -30,7 +30,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="90">
 
 <!-- START LOADER -->
-<div class="loader-bg">
+<div id="loader-bg" class="loader-bg">
     <div id="container">
         <svg viewbox="0 0 100 100">
             <defs>
@@ -122,7 +122,7 @@
 <!-- START BANNER -->
     <section class="section slide1 home-first p-0" id="home">
         <div class="slider-area" id="slider-area">
-            <iframe class="about-iframe" src="http://111.229.109.174:8888/threeEarth"></iframe>
+            <iframe class="about-iframe" src="http://localhost:8888/threeEarth"></iframe>
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6 image-order">
                     <div class="slider-image">
@@ -602,7 +602,13 @@
     </section>
 <!-- END CONTACT -->
 </div>
-
+<script>
+    window.onload = function() {
+  setTimeout(function() {
+    document.getElementById('loader-bg').classList.add('hidden');
+  }, 1000);
+};
+</script>
 <!-- Start Copyright -->
 
 <!-- End Copyright -->

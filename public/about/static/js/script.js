@@ -72,10 +72,10 @@ $(window).on("load", function () {
 
     $('.side-menu').removeClass('hidden');
 
-    setTimeout(function(){
-        $('.loader-bg').fadeToggle();
+    // setTimeout(function(){
+    //     $('.loader-bg').fadeToggle();
 
-    }, 500);
+    // }, 500);
 
     // $('.navbar-collapse .navbar-nav .nav-link:nth-child(1)').addClass('active');
     $('.navbar-collapse .navbar-nav .nav-link:nth-child(2)').removeClass('active');

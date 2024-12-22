@@ -2654,7 +2654,8 @@ display: none;
 .home-first {
   background-image: url('../image/banner.jpg');
 }
-body {
+body, .about-iframe {
   background-image: url('../image/banner.jpg');
   background-repeat: repeat-y;
 }
+

@@ -2651,5 +2651,9 @@ display: none;
     top: 13px;
   }
 .home-first {
-  background-image: url(./../image/banner-ChVQlsE8.jpg);
+  background-image: url('../image/banner.jpg');
+}
+body {
+  background-image: url('../image/banner.jpg');
+  background-repeat: repeat-y;
 }

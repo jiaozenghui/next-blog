@@ -13,7 +13,7 @@ export const menuConfs = {
   screen: '大屏',
   technology: 'IT技术',
   life: '生活'
-} as const
+}
 
 export type pTypes = keyof typeof menuConfs
 
@@ -85,12 +85,14 @@ export const menuList: menuProps[] = [
     children: tagList
   },
   {
-    id: 'screen',
-    label: '大屏'
+    id: 'http://111.229.109.174:8086/#/screens/list',
+    label: '大屏',
+    external: true
   },
   {
-    id: 'chart',
-    label: '图表'
+    id: 'http://111.229.109.174:8086/#/statistic-analysis/customize',
+    label: '图表',
+    external: true
   },
   {
     id: '/about/index.html',

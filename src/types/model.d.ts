@@ -27,7 +27,7 @@ declare interface TagAttributes {
     likeCount: number;
     category: string;
     tags: string
-    user:string,
+    user:UserAttributes,
     anchors: Anchor[]
   }
   declare interface UserAttributes {

@@ -22,7 +22,7 @@ $(window).on("load", function () {
         $('#pagepiling').pagepiling({
             direction: 'vertical',
             sectionsColor: ['#171717', '#171717', '#171717', '#171717', '#171717', '#171717'],
-            anchors: ['home', 'about', 'education', 'career-soufang', 'career-baidu', 'career-lenovo'],
+            anchors: ['home', 'about', 'education', 'career-soufang', 'career-baidu', 'career-lenovo', 'personal-demo'],
             scrollingSpeed: 500,
             easing: 'linear',
             loopBottom: false,
@@ -31,7 +31,7 @@ $(window).on("load", function () {
             navigation: {
                 'bulletsColor': '#535353',
                 'position': 'right',
-                'tooltips': ['Home', '关于我', '教育背景', '工作经验-搜房', '工作经验-联想', '工作经验-百度'],
+                'tooltips': ['Home', '关于我', '教育背景', '工作经验-搜房',  '工作经验-百度','工作经验-联想', '个人作品Demo'],
             },
             //events
             onLeave: function (index, nextIndex, direction) {
@@ -75,7 +75,7 @@ $(window).on("load", function () {
     setTimeout(function(){
         $('.loader-bg').fadeToggle();
 
-    }, 1500);
+    }, 500);
 
     // $('.navbar-collapse .navbar-nav .nav-link:nth-child(1)').addClass('active');
     $('.navbar-collapse .navbar-nav .nav-link:nth-child(2)').removeClass('active');
@@ -202,6 +202,24 @@ jQuery(function ($) {
 
     //Testimonial Owl
     $('#testimonial-carousal').owlCarousel({
+        loop:true,
+        margin:120,
+        nav:false,
+        dots:true,
+        autoplay:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:2
+            }
+        }
+    });
+    $('#testimonial-carousal-soufang').owlCarousel({
         loop:true,
         margin:120,
         nav:false,

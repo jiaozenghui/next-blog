@@ -122,10 +122,12 @@
 <!-- START BANNER -->
     <section class="section slide1 p-0" id="home">
         <div class="slider-area" id="slider-area">
+            <iframe class="about-iframe" src="http://111.229.109.174:8888/threeEarth"></iframe>
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6 image-order">
                     <div class="slider-image">
-                        <img src="static/image/slider-img.png" alt="Slider-Image">
+                        <!-- <img src="static/image/slider-img.png" alt="Slider-Image"> -->
+                        
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 text-md-center text-lg-left">
@@ -136,7 +138,7 @@
                 </div>
             </div>
             <!-- Circle-One -->
-            <div class="circle-one">
+            <div class="circle-con circle-one">
                  <span data-tootik="关于我" data-tootik-conf="right dark square shadow">
                     <a href="#about">
                         <span class="animated-circle position-relative"></span>
@@ -144,7 +146,7 @@
                  </span>
             </div>
             <!-- Circle-Two -->
-            <div class="circle-two">
+            <div class="circle-con circle-two">
                  <span data-tootik="教育背景" data-tootik-conf="left dark square shadow">
                     <a href="#education">
                         <span class="animated-circle position-relative"></span>
@@ -152,7 +154,7 @@
                  </span>
             </div>
             <!-- Circle-Three -->
-            <div class="circle-three">
+            <div class="circle-con circle-three">
               <span data-tootik="工作经验-搜房" data-tootik-conf="top dark square shadow">
                     <a href="#career-soufang">
                         <span class="animated-circle position-relative"></span>
@@ -160,21 +162,30 @@
               </span>
             </div>
             <!-- Circle-Four -->
-            <div class="circle-four">
-                  <span data-tootik="工作经验-联想" data-tootik-conf="bottom dark square shadow">
-                    <a href="#career-lenovo">
-                        <span class="animated-circle position-relative"></span>
-                    </a>
-                  </span>
-            </div>
+
             <!-- Circle-Five -->
-            <div class="circle-five">
+            <div class="circle-con circle-five">
                   <span data-tootik="工作经验-百度" data-tootik-conf="bottom dark square shadow">
                         <a href="#career-baidu">
                             <span class="animated-circle position-relative"></span>
                         </a>
                   </span>
             </div>
+            <div class="circle-con circle-four">
+                <span data-tootik="工作经验-联想" data-tootik-conf="bottom dark square shadow">
+                  <a href="#career-lenovo">
+                      <span class="animated-circle position-relative"></span>
+                  </a>
+                </span>
+          </div>
+            <div class="circle-con circle-six">
+                <span data-tootik="个人demo" data-tootik-conf="bottom dark square shadow">
+                      <a href="#personal-demo">
+                          <span class="animated-circle position-relative"></span>
+                      </a>
+                </span>
+          </div>
+            
         </div>
     </section>
 <!-- END BANNER -->
@@ -203,7 +214,7 @@
                                 有责任心，熟悉开发流程，前端框架搭建，抽象组件化能力，熟练使用 html+javascript+css ，熟练使用 angular,vue 框架，熟
                                 练使用 element-ui elementui-plus，antdesign 快速开发，及组件二次封装了解，运用 echarts,g6，x6等可视化库的开发，可
                                 以运用 python, .net 后台开发语言进行开发，熟悉 nodejs express 并可开发相关项目,了解k8s，docker 常用基本操作，熟练项
-                                目构建，部署
+                                目构建，部署，CI/CD流程
                             </p>
                         </div>
                     </div>
@@ -301,108 +312,44 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="team-classic owl-team owl-carousel text-center">
-                        <!-- Item 1 -->
-                        <div class="item">
-                            <div class="team-data-img">
-                                <a href="static/picture/portfolio-img-1.jpg" data-fancybox="images">
-                                <div class="single-work">
-                                    <img src="static/picture/portfolio-img-1.jpg" alt="team" class="img-responsive" data-no-retina="">
-                                    <div class="overlay-text center-block">
-                                        <div class="cases-image-inner">
-                                            <span class="cases-line top"></span>
-                                            <span class="cases-line top-right"></span>
-                                            <span class="cases-line bottom"></span>
-                                            <span class="cases-line bottom-left"></span>
-                                            <h6 class="text-white text-uppercase alt-font">CMS定制网站</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                </a>
-                                <div class="portfolio-content">
-                                    <h5 class="text-yellow main-font mb-2 text-uppercase">CMS</h5>
-                                    <p class="text-capitalize">为公司旗下酒店管理人员，提供可编辑的网站，用于酒店官网的更新操作 </p>
-                                </div>
+
+            <div class="row pt-1">
+                <div class="col-12">
+                    <!-- Testimonial Slider -->
+                    <div id="testimonial-carousal-soufang" class="testimonial-owl owl-carousel owl-theme">
+                        <!-- Item-1 -->
+                        <div class="item text-center">
+                            <div class="icon-quotes mb-4">
+                                <i class="fas ">CMS定制网站</i>
+                            </div>
+                            <div class="description">
+                                <p class="text-grey paragraph">为公司旗下酒店管理人员，提供可编辑的网站，用于酒店官网的更新操作</p>
+                                <p class="text-grey paragraph">在项目中承担后端工程师的角色，参与项目需求分析，跟进项目进度，开发主要模块，还原UI，数据交互，后端接口开发</p>
                             </div>
                         </div>
-                        <!-- Item 2 -->
-                        <div class="item">
-                            <div class="team-data-img">
-                                <a href="static/picture/portfolio-img-2.jpg" data-fancybox="images">
-                                <div class="single-work">
-                                    <img src="static/picture/portfolio-img-2.jpg" alt="team" class="img-responsive" data-no-retina="">
-                                    <div class="overlay-text center-block">
-                                        <div class="cases-image-inner">
-                                            <span class="cases-line top"></span>
-                                            <span class="cases-line top-right"></span>
-                                            <span class="cases-line bottom"></span>
-                                            <span class="cases-line bottom-left"></span>
-                                            <h6 class="text-white text-uppercase alt-font">上海宝安酒店官网</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                </a>
-                                <div class="portfolio-content">
-                                    <h5 class="text-yellow main-font mb-2 text-uppercase">上海宝安酒店官网</h5>
-                                    <p class="text-capitalize">酒店特色展示，以及房间预订</p>
-                                </div>
+                        <!-- Item-2 -->
+                        <div class="item text-center">
+                            <div class="icon-quotes mb-4">
+                                <i class="fas">上海宝安酒店官网</i>
+                            </div>
+                            <div class="description">
+                                <p class="text-grey paragraph">酒店特色展示，以及房间预订</p>
+                                <p class="text-grey paragraph">在项目中承担后端工程师的角色，参与项目需求分析，跟进项目进度，开发主要模块，还原UI，数据交互，后端接口开发</p>
+                            </div>
+
+                        </div>
+                        <!-- Item-3 -->
+                        <div class="item text-center">
+                            <div class="icon-quotes mb-4">
+                                <i class="fas ">广州北海银滩</i>
+                            </div>
+                            <div class="description">
+                                <p class="text-grey paragraph">酒店特色展示，以及房间预订</p>
+                                <p class="text-grey paragraph">在项目中承担后端工程师的角色，参与项目需求分析，跟进项目进度，开发主要模块，还原UI，数据交互，后端接口开发</p>
                             </div>
                         </div>
-                        <!-- Item 3 -->
-                        <div class="item">
-                            <div class="team-data-img">
-                                <a href="static/picture/portfolio-img-3.jpg" data-fancybox="images">
-                                <div class="single-work">
-                                    <img src="static/picture/portfolio-img-3.jpg" alt="team" class="img-responsive" data-no-retina="">
-                                    <div class="overlay-text center-block">
-                                        <div class="cases-image-inner">
-                                            <span class="cases-line top"></span>
-                                            <span class="cases-line top-right"></span>
-                                            <span class="cases-line bottom"></span>
-                                            <span class="cases-line bottom-left"></span>
-                                            <h6 class="text-white text-uppercase alt-font">广州北海银滩</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                </a>
-                                <div class="portfolio-content">
-                                    <h5 class="text-yellow main-font mb-2 text-uppercase">广州北海银滩</h5>
-                                    <p class="text-capitalize">酒店特色展示，以及房间预订等 </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Item 4 -->
-                        <div class="item">
-                            <div class="team-data-img">
-                                <a href="static/picture/portfolio-img-4.jpg" data-fancybox="images">
-                                    <div class="single-work">
-                                        <img src="static/picture/portfolio-img-4.jpg" alt="team" class="img-responsive" data-no-retina="">
-                                        <div class="overlay-text center-block">
-                                            <div class="cases-image-inner">
-                                                <span class="cases-line top"></span>
-                                                <span class="cases-line top-right"></span>
-                                                <span class="cases-line bottom"></span>
-                                                <span class="cases-line bottom-left"></span>
-                                                <h6 class="text-white text-uppercase alt-font">南宁国际大酒店</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="portfolio-content">
-                                    <h5 class="text-yellow main-font mb-2 text-uppercase">南宁国际大酒店</h5>
-                                    <p class="text-capitalize">酒店特色展示，以及房间预订等 </p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                    <a class="circle ini-customPrevBtn" id="team-circle-left">
-                        <i class="lni-chevron-left"></i>
-                    </a>
-                    <a class="circle ini-customNextBtn" id="team-circle-right">
-                        <i class="lni-chevron-right"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -410,16 +357,16 @@
 <!-- END PORTFOLIO -->
 
 <!-- START TESTIMONIALS -->
-    <section class="section slide6 testimonial-bg" id="career-baidu">
+    <section class="section slide5 testimonial-bg" id="career-baidu">
         <div class="container">
             <div class="row pb-5 heading-row">
                 <div class="col-12 col-md-7">
                     <h4 class="text-yellow main-font font-weight-normal"> 2014/11-2015/07</h4>
-                    <h2 class="main-font">外派百度 前端开发工程师</h2></p>
+                    <h2 class="main-font">百度 前端开发工程师</h2></p>
                 </div>
                 <div class="col-12 col-md-12">
                     <div class="py-1 alt-font">
-                        <p>百度的商业平台研发部前端开发，做过推广管理 APP 后台管理网站，推广管理平台的相关工作</p>
+                        <p>外派百度的商业平台研发部前端开发，做过推广管理 APP 后台管理网站，推广管理平台的相关工作</p>
                         <p>完成了推广管理 APP 后台管理网站的搭建</p>
                     </div>
                 </div>
@@ -515,6 +462,144 @@
         </div>
     </section>
 
+
+    <section class="section slide7 portfolio-bg" id="personal-demo">
+        <div class="container">
+            <div class="row pb-5 heading-row">
+                <div class="col-12 col-md-7">
+                    <h3 class="text-yellow main-font font-weight-normal">个人demo(可点击查看)</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="team-classic owl-team owl-carousel text-center">
+                        <!-- Item 1 -->
+                        <div class="item">
+                            <div class="team-data-img">
+                                <a href="http://111.229.109.174:8086/#/screens/list" >
+                                <div class="single-work">
+                                    <img src="static/image/customize-screen.png" alt="team" class="img-responsive" data-no-retina="">
+                                    <div class="overlay-text center-block">
+                                        <div class="cases-image-inner">
+                                            <span class="cases-line top"></span>
+                                            <span class="cases-line top-right"></span>
+                                            <span class="cases-line bottom"></span>
+                                            <span class="cases-line bottom-left"></span>
+                                            <h6 class="text-white text-uppercase alt-font">可视化大屏</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                                <div class="portfolio-content">
+                                    <h5 class="text-yellow main-font mb-2 text-uppercase">可视化大屏</h5>
+                                    <p class="text-capitalize">自定义可视化大屏，对数据进行自动接入，以及图形样式的定制化，支持饼图、曲线图，球形图等图形，基于echarts、antvg2、antvg6等可视化图形库</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="item">
+                            <div class="team-data-img">
+                                <a href="http://111.229.109.174:8086/#/dashboard/v2" >
+                                <div class="single-work">
+                                    <img src="static/image/threejs.png" alt="team" class="img-responsive" data-no-retina="">
+                                    <div class="overlay-text center-block">
+                                        <div class="cases-image-inner">
+                                            <span class="cases-line top"></span>
+                                            <span class="cases-line top-right"></span>
+                                            <span class="cases-line bottom"></span>
+                                            <span class="cases-line bottom-left"></span>
+                                            <h6 class="text-white text-uppercase alt-font">3D机房Demo</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                                <div class="portfolio-content">
+                                    <h5 class="text-yellow main-font mb-2 text-uppercase">3D机房Demo</h5>
+                                    <p class="text-capitalize">threejs 实现机房内，机器状态的监控告警等展示</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+
+                        <!-- Item 4 -->
+                        <div class="item">
+                            <div class="team-data-img">
+                                <a href="/" >
+                                    <div class="single-work">
+                                        <img src="static/image/blog.png" alt="team" class="img-responsive" data-no-retina="">
+                                        <div class="overlay-text center-block">
+                                            <div class="cases-image-inner">
+                                                <span class="cases-line top"></span>
+                                                <span class="cases-line top-right"></span>
+                                                <span class="cases-line bottom"></span>
+                                                <span class="cases-line bottom-left"></span>
+                                                <h6 class="text-white text-uppercase alt-font">个人Blog</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="portfolio-content">
+                                    <h5 class="text-yellow main-font mb-2 text-uppercase">个人Blog</h5>
+                                    <p class="text-capitalize">使用nextjs+mongodb+eggjs，实现的个人记录IT技术和个人生活的简单Blog。功能模块包括，用户登录、权限验证、文章创建、编辑删除，文章搜索等功能 </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="team-data-img">
+                                <a href="http://111.229.109.174:8086/#/statistic-analysis/customize" >
+                                <div class="single-work">
+                                    <img src="static/image/statistic.png" alt="team" class="img-responsive" data-no-retina="">
+                                    <div class="overlay-text center-block">
+                                        <div class="cases-image-inner">
+                                            <span class="cases-line top"></span>
+                                            <span class="cases-line top-right"></span>
+                                            <span class="cases-line bottom"></span>
+                                            <span class="cases-line bottom-left"></span>
+                                            <h6 class="text-white text-uppercase alt-font">数据分析</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                                <div class="portfolio-content">
+                                    <h5 class="text-yellow main-font mb-2 text-uppercase">数据分析</h5>
+                                    <p class="text-capitalize">封装antvg6、antvg2，echarts等可视化图形库，自定义介入数据，实现拖拽生成页面，定制数据分析页</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="team-data-img">
+                                <a href="http://111.229.109.174:8086/#/screens/rotation/list" >
+                                <div class="single-work">
+                                    <img src="static/image/rotate.png" alt="team" class="img-responsive" data-no-retina="">
+                                    <div class="overlay-text center-block">
+                                        <div class="cases-image-inner">
+                                            <span class="cases-line top"></span>
+                                            <span class="cases-line top-right"></span>
+                                            <span class="cases-line bottom"></span>
+                                            <span class="cases-line bottom-left"></span>
+                                            <h6 class="text-white text-uppercase alt-font">大屏轮播展示</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                                <div class="portfolio-content">
+                                    <h5 class="text-yellow main-font mb-2 text-uppercase">大屏轮播demo</h5>
+                                    <p class="text-capitalize">对自定义大屏页面的展示，可自定义轮播方式，轮播间隔等</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="circle ini-customPrevBtn" id="team-circle-left">
+                        <i class="lni-chevron-left"></i>
+                    </a>
+                    <a class="circle ini-customNextBtn" id="team-circle-right">
+                        <i class="lni-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 <!-- END CONTACT -->
 </div>
 
@@ -530,6 +615,5 @@
 <script src="static/js/owl.carousel.min.js"></script>
 <!-- CUSTOM JS -->
 <script src="static/js/jquery.pagepiling.min.js"></script>
-<script src="static/js/timeline.js"></script>
 <script src="static/js/contact_us.js"></script>
 <script src="static/js/script.js"></script></body></html>

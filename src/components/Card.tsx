@@ -4,6 +4,7 @@ import Link from "next/link";
 import { HeaderActions } from "./HeaderActions";
 import Like from "./Like";
 import Time from "./Time";
+import { menuConfs, pTypes } from "@/constants";
 const Card = ({ item }: { item: articleListItemType; key: string }) => {
   return (
     <div
@@ -33,10 +34,10 @@ const Card = ({ item }: { item: articleListItemType; key: string }) => {
       <div className="flex space-x-4 absolute bottom-[10px] right-[16px] text-sm justify-end text-muted-foreground">
         <div className="flex items-center">
           <Circle className="mr-1 h-3 w-3 fill-sky-400 text-sky-400" />
-          {item.category}
+          {menuConfs[item.category as pTypes]}
         </div>
         <Like articleId={item.id} likeCount={item.likeCount} />
-        <Time time={item.createdAt} />
+        <Time time={item.latestPublishAt} />
       </div>
     </div>
   );

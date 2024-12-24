@@ -1,5 +1,12 @@
 
 
+## [1.2.12](https://github.com/jiaozenghui/next-blog/compare/v1.2.11...v1.2.12) (2024-12-24)
+
+
+### 🐛问题修复
+
+* 🐛 date bug fix ([8db7b93](https://github.com/jiaozenghui/next-blog/commit/8db7b9328daa1fcccba76ccc878d13ec005b9537))
+
 ## [1.2.11](https://github.com/jiaozenghui/next-blog/compare/v1.2.10...v1.2.11) (2024-12-22)
 
 

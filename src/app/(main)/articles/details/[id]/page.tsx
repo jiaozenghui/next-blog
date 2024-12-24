@@ -44,7 +44,7 @@ const ArticleInfo = async ({ params }: { params: Promise<{ id: string }> }) => {
       <div className=" break-all flex-1 w-full   pb-5 shadow-sm px-2 overflow-hidden">
         <h1 className="text-4xl my-3 font-semibold">{data.title}</h1>
         <div className="my-3 flex text-muted-foreground">
-          <Time time={data.latestPublishAt} />
+          <Time time={data.createdAt} />
           <Like className="ml-3" articleId={data.id} likeCount={data.likeCount} />
           <Views className="ml-3" viewCount={data.viewCount} />
         </div>

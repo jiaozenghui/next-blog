@@ -1,5 +1,12 @@
 
 
+## [1.2.15](https://github.com/jiaozenghui/next-blog/compare/v1.2.14...v1.2.15) (2025-02-12)
+
+
+### 🐛问题修复
+
+* 🐛 bug fix ([d9aa007](https://github.com/jiaozenghui/next-blog/commit/d9aa0072218306c2cfa15aee3e6df6d4183ac0bd))
+
 ## [1.2.14](https://github.com/jiaozenghui/next-blog/compare/v1.2.13...v1.2.14) (2025-02-12)
 
 ## [1.2.13](https://github.com/jiaozenghui/next-blog/compare/v1.2.11...v1.2.13) (2025-02-12)

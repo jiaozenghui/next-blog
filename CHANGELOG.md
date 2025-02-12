@@ -1,5 +1,23 @@
 
 
+## [1.2.13](https://github.com/jiaozenghui/next-blog/compare/v1.2.11...v1.2.13) (2025-02-12)
+
+
+### ✨新功能
+
+* v1.2.12 ([8d35183](https://github.com/jiaozenghui/next-blog/commit/8d35183186140f7e2c57ae2a9e0f5cf8efb2ff41))
+
+
+### 🐛问题修复
+
+* 🐛 date bug fix ([a237c40](https://github.com/jiaozenghui/next-blog/commit/a237c40b15730cc50d7e970f4bf2da68707aadf8))
+* 🐛 date bug fix ([8db7b93](https://github.com/jiaozenghui/next-blog/commit/8db7b9328daa1fcccba76ccc878d13ec005b9537))
+
+
+### 📚文档
+
+* 📚 change redeme ([9c1e0c6](https://github.com/jiaozenghui/next-blog/commit/9c1e0c69a97cf8d214ddca3f0728116fd783eacd))
+
 ## [1.2.12](https://github.com/jiaozenghui/next-blog/compare/v1.2.11...v1.2.12) (2024-12-24)
 
 
